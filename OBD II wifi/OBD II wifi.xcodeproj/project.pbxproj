@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		DB708D6F7447FAB1598FF51B /* Pods_OBD_II_wifi.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 871DFDB8D35183A4E99C8FEA /* Pods_OBD_II_wifi.framework */; };
+		FACF5B6D1F894FE500A8F438 /* OBDUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACF5B6C1F894FE500A8F438 /* OBDUtils.swift */; };
 		FACFD34D1F894188004F8707 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACFD34C1F894188004F8707 /* AppDelegate.swift */; };
 		FACFD34F1F894188004F8707 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACFD34E1F894188004F8707 /* ViewController.swift */; };
 		FACFD3521F894188004F8707 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FACFD3501F894188004F8707 /* Main.storyboard */; };
@@ -19,6 +20,7 @@
 		7CFAA76BF42058E50351C14A /* Pods-OBD II wifi.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OBD II wifi.release.xcconfig"; path = "Pods/Target Support Files/Pods-OBD II wifi/Pods-OBD II wifi.release.xcconfig"; sourceTree = "<group>"; };
 		871DFDB8D35183A4E99C8FEA /* Pods_OBD_II_wifi.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OBD_II_wifi.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F46BCAED09DDD2871104000E /* Pods-OBD II wifi.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OBD II wifi.debug.xcconfig"; path = "Pods/Target Support Files/Pods-OBD II wifi/Pods-OBD II wifi.debug.xcconfig"; sourceTree = "<group>"; };
+		FACF5B6C1F894FE500A8F438 /* OBDUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OBDUtils.swift; sourceTree = "<group>"; };
 		FACFD3491F894188004F8707 /* OBD II wifi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "OBD II wifi.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FACFD34C1F894188004F8707 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FACFD34E1F894188004F8707 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -57,6 +59,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		FACF5B6B1F894FB200A8F438 /* OBDUtils */ = {
+			isa = PBXGroup;
+			children = (
+				FACF5B6C1F894FE500A8F438 /* OBDUtils.swift */,
+			);
+			path = OBDUtils;
+			sourceTree = "<group>";
+		};
 		FACFD3401F894188004F8707 = {
 			isa = PBXGroup;
 			children = (
@@ -78,6 +88,7 @@
 		FACFD34B1F894188004F8707 /* OBD II wifi */ = {
 			isa = PBXGroup;
 			children = (
+				FACF5B6B1F894FB200A8F438 /* OBDUtils */,
 				FACFD34C1F894188004F8707 /* AppDelegate.swift */,
 				FACFD34E1F894188004F8707 /* ViewController.swift */,
 				FACFD3501F894188004F8707 /* Main.storyboard */,
@@ -217,6 +228,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FACF5B6D1F894FE500A8F438 /* OBDUtils.swift in Sources */,
 				FACFD34F1F894188004F8707 /* ViewController.swift in Sources */,
 				FACFD34D1F894188004F8707 /* AppDelegate.swift in Sources */,
 			);
@@ -359,7 +371,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = PD4SP5G3U8;
 				INFOPLIST_FILE = "OBD II wifi/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = lucas.bicca.obdii.wifi;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -376,7 +388,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = PD4SP5G3U8;
 				INFOPLIST_FILE = "OBD II wifi/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = lucas.bicca.obdii.wifi;
 				PRODUCT_NAME = "$(TARGET_NAME)";
