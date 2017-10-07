@@ -1,0 +1,6 @@
+framework module OBD2Connect {
+  umbrella header "OBD2Connect-umbrella.h"
+
+  export *
+  module * { export * }
+}

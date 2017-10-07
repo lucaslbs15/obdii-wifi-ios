@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DB708D6F7447FAB1598FF51B /* Pods_OBD_II_wifi.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 871DFDB8D35183A4E99C8FEA /* Pods_OBD_II_wifi.framework */; };
 		FACFD34D1F894188004F8707 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACFD34C1F894188004F8707 /* AppDelegate.swift */; };
 		FACFD34F1F894188004F8707 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACFD34E1F894188004F8707 /* ViewController.swift */; };
 		FACFD3521F894188004F8707 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FACFD3501F894188004F8707 /* Main.storyboard */; };
@@ -15,6 +16,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7CFAA76BF42058E50351C14A /* Pods-OBD II wifi.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OBD II wifi.release.xcconfig"; path = "Pods/Target Support Files/Pods-OBD II wifi/Pods-OBD II wifi.release.xcconfig"; sourceTree = "<group>"; };
+		871DFDB8D35183A4E99C8FEA /* Pods_OBD_II_wifi.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OBD_II_wifi.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F46BCAED09DDD2871104000E /* Pods-OBD II wifi.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OBD II wifi.debug.xcconfig"; path = "Pods/Target Support Files/Pods-OBD II wifi/Pods-OBD II wifi.debug.xcconfig"; sourceTree = "<group>"; };
 		FACFD3491F894188004F8707 /* OBD II wifi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "OBD II wifi.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FACFD34C1F894188004F8707 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FACFD34E1F894188004F8707 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -29,17 +33,37 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DB708D6F7447FAB1598FF51B /* Pods_OBD_II_wifi.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		406A5107FEC3941DF15F8623 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				F46BCAED09DDD2871104000E /* Pods-OBD II wifi.debug.xcconfig */,
+				7CFAA76BF42058E50351C14A /* Pods-OBD II wifi.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		4ABC34A387DD6CFCDE719B74 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				871DFDB8D35183A4E99C8FEA /* Pods_OBD_II_wifi.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		FACFD3401F894188004F8707 = {
 			isa = PBXGroup;
 			children = (
 				FACFD34B1F894188004F8707 /* OBD II wifi */,
 				FACFD34A1F894188004F8707 /* Products */,
+				406A5107FEC3941DF15F8623 /* Pods */,
+				4ABC34A387DD6CFCDE719B74 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -71,9 +95,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = FACFD35B1F894188004F8707 /* Build configuration list for PBXNativeTarget "OBD II wifi" */;
 			buildPhases = (
+				2C81D4FF199A8B5BBC89E7A4 /* [CP] Check Pods Manifest.lock */,
 				FACFD3451F894188004F8707 /* Sources */,
 				FACFD3461F894188004F8707 /* Frameworks */,
 				FACFD3471F894188004F8707 /* Resources */,
+				05D3A97D0F44A2E7DE1187AB /* [CP] Embed Pods Frameworks */,
+				8574F3078014203C970131D0 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -130,6 +157,60 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		05D3A97D0F44A2E7DE1187AB /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-OBD II wifi/Pods-OBD II wifi-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/OBD2Connect/OBD2Connect.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/OBD2Connect.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-OBD II wifi/Pods-OBD II wifi-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		2C81D4FF199A8B5BBC89E7A4 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-OBD II wifi-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8574F3078014203C970131D0 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-OBD II wifi/Pods-OBD II wifi-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		FACFD3451F894188004F8707 /* Sources */ = {
@@ -272,13 +353,15 @@
 		};
 		FACFD35C1F894188004F8707 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F46BCAED09DDD2871104000E /* Pods-OBD II wifi.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = PD4SP5G3U8;
 				INFOPLIST_FILE = "OBD II wifi/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "lucas.bicca.OBD-II-wifi";
+				PRODUCT_BUNDLE_IDENTIFIER = lucas.bicca.obdii.wifi;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -287,13 +370,15 @@
 		};
 		FACFD35D1F894188004F8707 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7CFAA76BF42058E50351C14A /* Pods-OBD II wifi.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = PD4SP5G3U8;
 				INFOPLIST_FILE = "OBD II wifi/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "lucas.bicca.OBD-II-wifi";
+				PRODUCT_BUNDLE_IDENTIFIER = lucas.bicca.obdii.wifi;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
