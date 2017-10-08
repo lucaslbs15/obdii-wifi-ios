@@ -12,8 +12,14 @@ class OBDUtils {
     
     var connection: OBDConnection
     
-    init(host: String, port: UInt32, completionQueue: DispatchQueue, timeout: TimeInterval) {
+    init(host: String, port: UInt32, completionQueue: DispatchQueue = DispatchQueue.main, timeout: TimeInterval = 0.100) {
         connection = OBDConnection(host: host, port: port, completionQueue: completionQueue, requestTimeout: timeout)
+    }
+    
+    func printLogWhenStateChange() {
+        connection.onStateChanged = { state in
+            print(state)
+        }
     }
     
     func openConnection() {
@@ -24,9 +30,9 @@ class OBDUtils {
         connection.close()
     }
     
-    func startRead(deadline: Int) {
+    func startRead(deadline: Int, dataToSend: String) {
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(deadline), qos: .default, flags: .assignCurrentContext, execute: {
-            self.connection.send(data: "ATZ\r".data(using: .ascii)!, completion: { data in
+            self.connection.send(data: dataToSend.data(using: .ascii)!, completion: { data in
                 data.onSuccess(block: {
                     data in print(data)
                 })
