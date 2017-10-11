@@ -10,6 +10,8 @@ import UIKit
 
 class ViewController: UIViewController {
     
+    @IBOutlet weak var inputCommand: UITextField!;
+    private let defaultCommand: String = "BAZINGA!"
     private var obdUtils: OBDUtils!;
     
     override func viewDidLoad() {
@@ -22,8 +24,9 @@ class ViewController: UIViewController {
     }
     
     @IBAction func sendData() {
-        print("sendData()")
-        obdUtils.startRead(deadline: 4, dataToSend: "ATZ\r")
+        //obdUtils.startRead(deadline: 4, dataToSend: "ATI\r".data(using: .ascii)!)
+        let commandString: String = "\(inputCommand.text ?? defaultCommand)\r"
+        obdUtils.startRead(deadline: 4, dataToSend: commandString.data(using: .ascii)!)
     }
 
     override func didReceiveMemoryWarning() {
