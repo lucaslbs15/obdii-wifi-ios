@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		DB708D6F7447FAB1598FF51B /* Pods_OBD_II_wifi.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 871DFDB8D35183A4E99C8FEA /* Pods_OBD_II_wifi.framework */; };
+		FABEC2FD1F8FC61600B14A90 /* OBDCommandEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABEC2FC1F8FC61600B14A90 /* OBDCommandEnum.swift */; };
 		FACF5B6D1F894FE500A8F438 /* OBDUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACF5B6C1F894FE500A8F438 /* OBDUtils.swift */; };
 		FACFD34D1F894188004F8707 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACFD34C1F894188004F8707 /* AppDelegate.swift */; };
 		FACFD34F1F894188004F8707 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACFD34E1F894188004F8707 /* ViewController.swift */; };
@@ -20,6 +21,7 @@
 		7CFAA76BF42058E50351C14A /* Pods-OBD II wifi.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OBD II wifi.release.xcconfig"; path = "Pods/Target Support Files/Pods-OBD II wifi/Pods-OBD II wifi.release.xcconfig"; sourceTree = "<group>"; };
 		871DFDB8D35183A4E99C8FEA /* Pods_OBD_II_wifi.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OBD_II_wifi.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F46BCAED09DDD2871104000E /* Pods-OBD II wifi.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OBD II wifi.debug.xcconfig"; path = "Pods/Target Support Files/Pods-OBD II wifi/Pods-OBD II wifi.debug.xcconfig"; sourceTree = "<group>"; };
+		FABEC2FC1F8FC61600B14A90 /* OBDCommandEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OBDCommandEnum.swift; sourceTree = "<group>"; };
 		FACF5B6C1F894FE500A8F438 /* OBDUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OBDUtils.swift; sourceTree = "<group>"; };
 		FACFD3491F894188004F8707 /* OBD II wifi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "OBD II wifi.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FACFD34C1F894188004F8707 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -63,6 +65,7 @@
 			isa = PBXGroup;
 			children = (
 				FACF5B6C1F894FE500A8F438 /* OBDUtils.swift */,
+				FABEC2FC1F8FC61600B14A90 /* OBDCommandEnum.swift */,
 			);
 			path = OBDUtils;
 			sourceTree = "<group>";
@@ -228,6 +231,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FABEC2FD1F8FC61600B14A90 /* OBDCommandEnum.swift in Sources */,
 				FACF5B6D1F894FE500A8F438 /* OBDUtils.swift in Sources */,
 				FACFD34F1F894188004F8707 /* ViewController.swift in Sources */,
 				FACFD34D1F894188004F8707 /* AppDelegate.swift in Sources */,
