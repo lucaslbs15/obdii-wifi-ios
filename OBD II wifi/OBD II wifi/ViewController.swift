@@ -10,6 +10,7 @@ import UIKit
 
 class ViewController: UIViewController {
     
+    @IBOutlet weak var sendDataButton: UIButton!
     @IBOutlet weak var hostTextField: UITextField!
     @IBOutlet weak var portTextField: UITextField!
     @IBOutlet weak var identityLabel: UILabel!;
@@ -29,6 +30,7 @@ class ViewController: UIViewController {
     }
     
     @IBAction func sendData() {
+        sendDataButton.titleLabel?.text = "Reconectar"
         configOBDConnection()
         readInfos()
     }
@@ -40,21 +42,45 @@ class ViewController: UIViewController {
     }
     
     private func readInfos() {
-        sendData(obdCommand: OBDCommandEnum.IDENTITY, label: identityLabel)
-        sendData(obdCommand: OBDCommandEnum.READ_INPUT_VOLTAGE, label: voltageLabel)
-        sendData(obdCommand: OBDCommandEnum.FUEL_LEVEL_INPUT, label: fuelInputLabel)
-        sendData(obdCommand: OBDCommandEnum.FUEL_PRESSURE, label: fuelPressureLabel)
-        sendData(obdCommand: OBDCommandEnum.ENGINE_COOLANT_TEMPERATURE, label: engineTemperatureLabel)
-        sendData(obdCommand: OBDCommandEnum.ENGINE_RPM, label: engineRPMLabel)
-        sendData(obdCommand: OBDCommandEnum.VEHICLE_SPEED, label: vehicleSpeedLabel)
-        sendData(obdCommand: OBDCommandEnum.RUN_TIME_SINCE_ENGINE_START, label: runTimeEngineLabel)
-        sendData(obdCommand: OBDCommandEnum.AMBIENT_AIR_TEMPERATURE, label: ambientTemperatureLabel)
+        chooseDataToSend(previousOBDCommand: OBDCommandEnum.NONE)
     }
     
     private func sendData(obdCommand: OBDCommandEnum, label: UILabel) {
         obdUtils.startRead(deadline: 4, dataString: obdCommand.rawValue) {
             (result: String) in
             label.text = OBDUtils.replaceOBDCommandResult(result: result, obdCommand: obdCommand)
+            self.chooseDataToSend(previousOBDCommand: obdCommand)
+        }
+    }
+    
+    private func chooseDataToSend(previousOBDCommand: OBDCommandEnum) {
+        switch previousOBDCommand {
+        case .IDENTITY:
+            sendData(obdCommand: OBDCommandEnum.READ_INPUT_VOLTAGE, label: voltageLabel)
+            break
+        case .READ_INPUT_VOLTAGE:
+            sendData(obdCommand: OBDCommandEnum.FUEL_LEVEL_INPUT, label: fuelInputLabel)
+            break
+        case .FUEL_LEVEL_INPUT:
+            sendData(obdCommand: OBDCommandEnum.FUEL_PRESSURE, label: fuelPressureLabel)
+            break
+        case .FUEL_PRESSURE:
+            sendData(obdCommand: OBDCommandEnum.ENGINE_COOLANT_TEMPERATURE, label: engineTemperatureLabel)
+            break
+        case .ENGINE_COOLANT_TEMPERATURE:
+            sendData(obdCommand: OBDCommandEnum.ENGINE_RPM, label: engineRPMLabel)
+            break
+        case .ENGINE_RPM:
+            sendData(obdCommand: OBDCommandEnum.VEHICLE_SPEED, label: vehicleSpeedLabel)
+            break
+        case .VEHICLE_SPEED:
+            sendData(obdCommand: OBDCommandEnum.RUN_TIME_SINCE_ENGINE_START, label: runTimeEngineLabel)
+            break
+        case .RUN_TIME_SINCE_ENGINE_START:
+            sendData(obdCommand: OBDCommandEnum.AMBIENT_AIR_TEMPERATURE, label: ambientTemperatureLabel)
+            break
+        default:
+            sendData(obdCommand: OBDCommandEnum.IDENTITY, label: identityLabel)
         }
     }
 

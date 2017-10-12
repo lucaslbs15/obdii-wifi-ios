@@ -277,6 +277,7 @@
                         <outlet property="identityLabel" destination="lTR-HJ-iZA" id="z0j-Rf-5w0"/>
                         <outlet property="portTextField" destination="Qxq-6Z-KWw" id="Kcq-GT-azE"/>
                         <outlet property="runTimeEngineLabel" destination="2vU-sw-i5d" id="jep-ph-WPO"/>
+                        <outlet property="sendDataButton" destination="BSG-Nv-c0o" id="tTD-U0-Vei"/>
                         <outlet property="vehicleSpeedLabel" destination="IpG-Dg-FmO" id="ikg-17-XF1"/>
                         <outlet property="voltageLabel" destination="k7j-FG-HMW" id="eQr-Hz-RrJ"/>
                     </connections>
