@@ -30,7 +30,9 @@ class OBDUtils {
         connection.close()
     }
     
-    func startRead(deadline: Int, dataToSend: Data) {
+    func startRead(deadline: Int, dataString: String) {
+        let commandString: String = "\(dataString)\r"
+        let dataToSend: Data = commandString.data(using: .ascii)!
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(deadline), qos: .default, flags: .assignCurrentContext, execute: {
             self.connection.send(data: dataToSend, completion: { data in
                 data.onSuccess(block: {                    

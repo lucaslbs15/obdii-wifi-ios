@@ -24,9 +24,11 @@ class ViewController: UIViewController {
     }
     
     @IBAction func sendData() {
-        //obdUtils.startRead(deadline: 4, dataToSend: "ATI\r".data(using: .ascii)!)
-        let commandString: String = "\(inputCommand.text ?? defaultCommand)\r"
-        obdUtils.startRead(deadline: 4, dataToSend: commandString.data(using: .ascii)!)
+        // ATI = Identify yourself; ATRV = Read the input Voltage; 012F = Fuel Level Input; 0123 = Fuel Pressure (diesel);
+        // 0105 = Engine Coolant Temperature; 010A = Fuel Pressure; 010C = Engine RPM; 010D = Vehicle speed;
+        // 011F = Run time since engine start; 0146 = Ambient air temperature; ATMA = Monitor All; ATAMC = display Activity Monitor Count;
+        
+        obdUtils.startRead(deadline: 4, dataString: inputCommand.text!)
     }
 
     override func didReceiveMemoryWarning() {
