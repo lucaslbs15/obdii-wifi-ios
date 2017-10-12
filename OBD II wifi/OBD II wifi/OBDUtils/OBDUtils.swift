@@ -45,4 +45,25 @@ class OBDUtils {
                 })
             })
     }
+    
+    func startRead(deadline: Int, dataString: String, completion: @escaping (_ result: String) -> Void) {
+        let commandString: String = "\(dataString)\r"
+        let dataToSend: Data = commandString.data(using: .ascii)!
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(deadline), qos: .default, flags: .assignCurrentContext, execute: {
+            self.connection.send(data: dataToSend, completion: { data in
+                data.onSuccess(block: {
+                    data in completion(data)
+                })
+                
+                data.onFailure(block: {
+                    error in completion(String(describing: error))
+                })
+            })
+        })
+    }
+    
+    class func replaceOBDCommandResult(result: String, obdCommand: OBDCommandEnum) -> String {
+        let resultArray = result.components(separatedBy: "\(obdCommand.rawValue)\r")
+        return resultArray[1]
+    }
 }

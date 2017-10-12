@@ -12,6 +12,16 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var hostTextField: UITextField!
     @IBOutlet weak var portTextField: UITextField!
+    @IBOutlet weak var identityLabel: UILabel!;
+    @IBOutlet weak var voltageLabel: UILabel!;
+    @IBOutlet weak var fuelInputLabel: UILabel!;
+    @IBOutlet weak var fuelPressureLabel: UILabel!;
+    @IBOutlet weak var engineTemperatureLabel: UILabel!;
+    @IBOutlet weak var engineRPMLabel: UILabel!;
+    @IBOutlet weak var vehicleSpeedLabel: UILabel!;
+    @IBOutlet weak var runTimeEngineLabel: UILabel!;
+    @IBOutlet weak var ambientTemperatureLabel: UILabel!;
+    
     private var obdUtils: OBDUtils!
     
     override func viewDidLoad() {
@@ -20,13 +30,32 @@ class ViewController: UIViewController {
     
     @IBAction func sendData() {
         configOBDConnection()
-        obdUtils.startRead(deadline: 4, dataString: OBDCommandEnum.READ_INPUT_VOLTAGE.rawValue)
+        readInfos()
     }
     
     private func configOBDConnection() {
         obdUtils = OBDUtils(host: hostTextField.text!, port: UInt32(portTextField.text!)!)
         obdUtils.printLogWhenStateChange()
         obdUtils.openConnection()
+    }
+    
+    private func readInfos() {
+        sendData(obdCommand: OBDCommandEnum.IDENTITY, label: identityLabel)
+        sendData(obdCommand: OBDCommandEnum.READ_INPUT_VOLTAGE, label: voltageLabel)
+        sendData(obdCommand: OBDCommandEnum.FUEL_LEVEL_INPUT, label: fuelInputLabel)
+        sendData(obdCommand: OBDCommandEnum.FUEL_PRESSURE, label: fuelPressureLabel)
+        sendData(obdCommand: OBDCommandEnum.ENGINE_COOLANT_TEMPERATURE, label: engineTemperatureLabel)
+        sendData(obdCommand: OBDCommandEnum.ENGINE_RPM, label: engineRPMLabel)
+        sendData(obdCommand: OBDCommandEnum.VEHICLE_SPEED, label: vehicleSpeedLabel)
+        sendData(obdCommand: OBDCommandEnum.RUN_TIME_SINCE_ENGINE_START, label: runTimeEngineLabel)
+        sendData(obdCommand: OBDCommandEnum.AMBIENT_AIR_TEMPERATURE, label: ambientTemperatureLabel)
+    }
+    
+    private func sendData(obdCommand: OBDCommandEnum, label: UILabel) {
+        obdUtils.startRead(deadline: 4, dataString: obdCommand.rawValue) {
+            (result: String) in
+            label.text = OBDUtils.replaceOBDCommandResult(result: result, obdCommand: obdCommand)
+        }
     }
 
     override func didReceiveMemoryWarning() {
