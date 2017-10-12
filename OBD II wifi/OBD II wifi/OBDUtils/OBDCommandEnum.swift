@@ -8,6 +8,8 @@
 
 import Foundation
 enum OBDCommandEnum: String {
+    case NONE = "NONE"
+    case RESET = "ATZ"
     case IDENTITY = "ATI"
     case READ_INPUT_VOLTAGE = "ATRV"
     case FUEL_LEVEL_INPUT = "012F"
