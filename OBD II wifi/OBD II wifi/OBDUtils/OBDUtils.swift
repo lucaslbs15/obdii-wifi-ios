@@ -62,8 +62,30 @@ class OBDUtils {
         })
     }
     
+    func prepareToRead(obdCommand: OBDCommandEnum, completion: @escaping (_ result: Bool) -> Void) {
+        startRead(deadline: 4, dataString: obdCommand.rawValue) {
+            (result: String) in
+            completion(true)
+        }
+    }
+    
     class func replaceOBDCommandResult(result: String, obdCommand: OBDCommandEnum) -> String {
+        switch obdCommand {
+        case .IDENTITY, .PROTOCOL_0, .DISPLAY_ACTIVITY_MONITOR_COUNT,
+             .MONITOR_ALL, .READ_INPUT_VOLTAGE, .RESET:
+            return replaceATCommand(result: result, obdCommand: obdCommand)
+        case .ENGINE_COOLANT_TEMPERATURE:
+            return EngineCoolantTemperatureUtil.calculeTemperature(result: result)
+        case .ENGINE_RPM:
+            return ""
+        default:
+            return result
+        }
+    }
+    
+    class func replaceATCommand(result: String, obdCommand: OBDCommandEnum) -> String {
         let resultArray = result.components(separatedBy: "\(obdCommand.rawValue)\r")
         return resultArray[1]
     }
+    
 }

@@ -22,4 +22,5 @@ enum OBDCommandEnum: String {
     case AMBIENT_AIR_TEMPERATURE = "0146"
     case MONITOR_ALL = "ATMA"
     case DISPLAY_ACTIVITY_MONITOR_COUNT = "ATAMC"
+    case PROTOCOL_0 = "ATSP0"
 }

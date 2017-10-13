@@ -32,13 +32,33 @@ class ViewController: UIViewController {
     @IBAction func sendData() {
         sendDataButton.titleLabel?.text = "Reconectar"
         configOBDConnection()
-        readInfos()
+        prepareToRead(obdCommand: OBDCommandEnum.RESET)
     }
     
     private func configOBDConnection() {
         obdUtils = OBDUtils(host: hostTextField.text!, port: UInt32(portTextField.text!)!)
         obdUtils.printLogWhenStateChange()
         obdUtils.openConnection()
+    }
+    
+    private func prepareToRead(obdCommand: OBDCommandEnum) {
+        obdUtils.prepareToRead(obdCommand: obdCommand) {
+            (result: Bool) in
+            self.choosePrepareToRead(previousOBDCommand: obdCommand)
+        }
+    }
+    
+    private func choosePrepareToRead(previousOBDCommand: OBDCommandEnum) {
+        switch previousOBDCommand {
+        case .RESET:
+            prepareToRead(obdCommand: OBDCommandEnum.PROTOCOL_0)
+            break
+        case .PROTOCOL_0:
+            readInfos()
+            break
+        default:
+            readInfos()
+        }
     }
     
     private func readInfos() {
