@@ -65,6 +65,7 @@ class OBDUtils {
     func prepareToRead(obdCommand: OBDCommandEnum, completion: @escaping (_ result: Bool) -> Void) {
         startRead(deadline: 4, dataString: obdCommand.rawValue) {
             (result: String) in
+            print("prepareToRead: \(result)")
             completion(true)
         }
     }
@@ -77,7 +78,13 @@ class OBDUtils {
         case .ENGINE_COOLANT_TEMPERATURE:
             return EngineCoolantTemperatureUtil.calculeTemperature(result: result)
         case .ENGINE_RPM:
-            return ""
+            return EngineRPMUtil.calculateRPM(result: result)
+        case .AMBIENT_AIR_TEMPERATURE:
+            return AmbientAirTemperatureUtil.calculeTemperature(result: result)
+        case .INTAKE_AIR_TEMPERATURE:
+            return IntakeAirTemperatureUtil.calculeTemperature(result: result)
+        case .VEHICLE_SPEED:
+            return VehicleSpeedUtil.formatSpeed(result: result)
         default:
             return result
         }

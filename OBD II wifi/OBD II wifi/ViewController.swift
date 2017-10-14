@@ -22,6 +22,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var vehicleSpeedLabel: UILabel!;
     @IBOutlet weak var runTimeEngineLabel: UILabel!;
     @IBOutlet weak var ambientTemperatureLabel: UILabel!;
+    @IBOutlet weak var mafAirFlowRateLabel: UILabel!;
     
     private var obdUtils: OBDUtils!
     
@@ -44,6 +45,7 @@ class ViewController: UIViewController {
     private func prepareToRead(obdCommand: OBDCommandEnum) {
         obdUtils.prepareToRead(obdCommand: obdCommand) {
             (result: Bool) in
+            print("commad prepared: \(obdCommand.rawValue)")
             self.choosePrepareToRead(previousOBDCommand: obdCommand)
         }
     }
@@ -54,7 +56,7 @@ class ViewController: UIViewController {
             prepareToRead(obdCommand: OBDCommandEnum.PROTOCOL_0)
             break
         case .PROTOCOL_0:
-            readInfos()
+            prepareToRead(obdCommand: OBDCommandEnum.PROVE_WORKING)
             break
         default:
             readInfos()
@@ -98,6 +100,9 @@ class ViewController: UIViewController {
             break
         case .RUN_TIME_SINCE_ENGINE_START:
             sendData(obdCommand: OBDCommandEnum.AMBIENT_AIR_TEMPERATURE, label: ambientTemperatureLabel)
+            break
+        case .AMBIENT_AIR_TEMPERATURE:
+            sendData(obdCommand: OBDCommandEnum.MAF_AIR_FLOW_RATE, label: mafAirFlowRateLabel)
             break
         default:
             sendData(obdCommand: OBDCommandEnum.IDENTITY, label: identityLabel)
