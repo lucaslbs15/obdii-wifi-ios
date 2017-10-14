@@ -15,22 +15,29 @@ class EngineRPMUtil {
             return "-"
         }
         
-        let divideFor = 4
-        
+        let divideFor: UInt = 4
+        let base: UInt = 256
+        // formula ((A*256)+B)/4
         let stringArray = result.components(separatedBy: " ")
         let firstByte = stringArray[2]
         let secondByte = stringArray[3]
         
-        guard let firstDecimal = UInt8(firstByte, radix: 16), firstByte.count > 0 else {
+        guard let firstDecimal = UInt(firstByte, radix: 16), firstByte.count > 0 else {
             return "-"
         }
         
-        guard let secondDecimal = UInt8(secondByte, radix: 16), secondByte.count > 0 else {
+        guard let secondDecimal = UInt(secondByte, radix: 16), secondByte.count > 0 else {
             return "-"
         }
         
-        let desiredData: String = String(firstDecimal) + String(secondDecimal)
-        let rpmValue = (Int(desiredData)! / divideFor)
+        /*
+
+         let firstDecimal = UInt(firstByte, radix: 16)
+         let secondDecimal = UInt(secondByte, radix: 16)
+         //// formula ((A*256)+B)/4
+         let resultRPM = ((firstDecimal! * 256) + seco
+         */
+        let rpmValue = ((firstDecimal * base) + secondDecimal) / divideFor
         return String(rpmValue)
     }
 }
