@@ -23,6 +23,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var runTimeEngineLabel: UILabel!;
     @IBOutlet weak var ambientTemperatureLabel: UILabel!;
     @IBOutlet weak var mafAirFlowRateLabel: UILabel!;
+    @IBOutlet weak var statusLabel: UILabel!
     
     private var obdUtils: OBDUtils!
     
@@ -31,7 +32,8 @@ class ViewController: UIViewController {
     }
     
     @IBAction func sendData() {
-        sendDataButton.titleLabel?.text = "Reconectar"
+        sendDataButton.isEnabled = false
+        statusLabel.text = "Conectando..."
         configOBDConnection()
         prepareToRead(obdCommand: OBDCommandEnum.RESET)
     }
@@ -64,6 +66,7 @@ class ViewController: UIViewController {
     }
     
     private func readInfos() {
+        statusLabel.text = "Buscando dados..."
         chooseDataToSend(previousOBDCommand: OBDCommandEnum.NONE)
     }
     
