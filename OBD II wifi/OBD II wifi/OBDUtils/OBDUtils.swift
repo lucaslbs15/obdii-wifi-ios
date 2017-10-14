@@ -52,7 +52,9 @@ class OBDUtils {
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(deadline), qos: .default, flags: .assignCurrentContext, execute: {
             self.connection.send(data: dataToSend, completion: { data in
                 data.onSuccess(block: {
-                    data in completion(data)
+                    data in
+                    print("send onSuccess: \(data)")
+                    completion(data)
                 })
                 
                 data.onFailure(block: {
@@ -62,8 +64,45 @@ class OBDUtils {
         })
     }
     
+    func prepareToRead(obdCommand: OBDCommandEnum, completion: @escaping (_ result: Bool) -> Void) {
+        startRead(deadline: 4, dataString: obdCommand.rawValue) {
+            (result: String) in
+            print("prepareToRead: \(result)")
+            completion(true)
+        }
+    }
+    
     class func replaceOBDCommandResult(result: String, obdCommand: OBDCommandEnum) -> String {
+        switch obdCommand {
+        case .IDENTITY, .PROTOCOL_0, .DISPLAY_ACTIVITY_MONITOR_COUNT,
+             .MONITOR_ALL, .READ_INPUT_VOLTAGE, .RESET:
+            return replaceATCommand(result: result, obdCommand: obdCommand)
+        case .ENGINE_COOLANT_TEMPERATURE:
+            return EngineCoolantTemperatureUtil.calculeTemperature(result: result)
+        case .ENGINE_RPM:
+            return EngineRPMUtil.calculateRPM(result: result)
+        case .AMBIENT_AIR_TEMPERATURE:
+            return AmbientAirTemperatureUtil.calculeTemperature(result: result)
+        case .INTAKE_AIR_TEMPERATURE:
+            return IntakeAirTemperatureUtil.calculeTemperature(result: result)
+        case .VEHICLE_SPEED:
+            return VehicleSpeedUtil.formatSpeed(result: result)
+        case .FUEL_LEVEL_INPUT:
+            return FuelLevelInputUtil.formatLevel(result: result)
+        case .FUEL_PRESSURE:
+            return FuelPressureUtil.formatPressure(result: result)
+        case .RUN_TIME_SINCE_ENGINE_START:
+            return RunTimeSinceEngineStartUtil.formatRunTime(result: result)
+        case .MAF_AIR_FLOW_RATE:
+            return MAFAirFlowRateUtil.formatMAF(result: result)
+        default:
+            return result
+        }
+    }
+    
+    class func replaceATCommand(result: String, obdCommand: OBDCommandEnum) -> String {
         let resultArray = result.components(separatedBy: "\(obdCommand.rawValue)\r")
         return resultArray[1]
     }
+    
 }
