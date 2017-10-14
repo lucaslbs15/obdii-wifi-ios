@@ -17,7 +17,6 @@ class EngineRPMUtil {
         
         let divideFor: UInt = 4
         let base: UInt = 256
-        // formula ((A*256)+B)/4
         let stringArray = result.components(separatedBy: " ")
         let firstByte = stringArray[2]
         let secondByte = stringArray[3]
@@ -30,13 +29,6 @@ class EngineRPMUtil {
             return "-"
         }
         
-        /*
-
-         let firstDecimal = UInt(firstByte, radix: 16)
-         let secondDecimal = UInt(secondByte, radix: 16)
-         //// formula ((A*256)+B)/4
-         let resultRPM = ((firstDecimal! * 256) + seco
-         */
         let rpmValue = ((firstDecimal * base) + secondDecimal) / divideFor
         return String(rpmValue)
     }
