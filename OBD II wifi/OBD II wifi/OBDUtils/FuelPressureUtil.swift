@@ -1,5 +1,5 @@
 //
-//  VehicleSpeed.swift
+//  FuelPressureUtil.swift
 //  OBD II wifi
 //
 //  Created by Lucas Bicca on 14/10/17.
@@ -7,22 +7,16 @@
 //
 
 import Foundation
-class VehicleSpeedUtil {
+class FuelPressureUtil {
     
-    class func formatSpeed(result: String) -> String {
-        /*
-         010D
-         41 0D 00
-         
-         result    String    "010D\r41 0D 00 \r\r>"
-         */
-        print("VehicleSpeedUtil - formatSpeed: \(result)")
+    class func formatPressure(result: String) -> String {
         if (ResultUtil.hasNoData(result: result) || ResultUtil.isUnableToConnect(result: result)) {
             return "-"
         }
         let stringArray = result.components(separatedBy: " ")
         let desiredData = stringArray[2]
-        let speedInKmPerHour = UInt8(desiredData, radix: 16)
-        return "\(speedInKmPerHour!) km/h"
+        let fuelPressure = UInt8(desiredData, radix: 16)
+        let fuelPressureCalculated: UInt = UInt(fuelPressure! * 3)
+        return "\(String(fuelPressureCalculated)) kPa"
     }
 }

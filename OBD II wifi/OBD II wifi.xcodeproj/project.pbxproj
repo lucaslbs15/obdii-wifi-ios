@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		DB708D6F7447FAB1598FF51B /* Pods_OBD_II_wifi.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 871DFDB8D35183A4E99C8FEA /* Pods_OBD_II_wifi.framework */; };
+		FA2DAA751F929F70001231C9 /* FuelLevelInputUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2DAA741F929F70001231C9 /* FuelLevelInputUtil.swift */; };
+		FA2DAA771F92A156001231C9 /* FuelPressureUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2DAA761F92A156001231C9 /* FuelPressureUtil.swift */; };
+		FA2DAA791F92A2CD001231C9 /* RunTimeSinceEngineStartUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2DAA781F92A2CD001231C9 /* RunTimeSinceEngineStartUtil.swift */; };
+		FA2DAA7B1F92A340001231C9 /* MAFAirFlowRateUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2DAA7A1F92A340001231C9 /* MAFAirFlowRateUtil.swift */; };
 		FABEC2FD1F8FC61600B14A90 /* OBDCommandEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABEC2FC1F8FC61600B14A90 /* OBDCommandEnum.swift */; };
 		FACF5B6D1F894FE500A8F438 /* OBDUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACF5B6C1F894FE500A8F438 /* OBDUtils.swift */; };
 		FACFD34D1F894188004F8707 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACFD34C1F894188004F8707 /* AppDelegate.swift */; };
@@ -20,12 +24,17 @@
 		FADE8E9E1F92677E00C0619D /* AmbientAirTemperatureUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADE8E9D1F92677E00C0619D /* AmbientAirTemperatureUtil.swift */; };
 		FADE8EA01F92688000C0619D /* IntakeAirTemperatureUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADE8E9F1F92688000C0619D /* IntakeAirTemperatureUtil.swift */; };
 		FADE8EA21F9270E100C0619D /* VehicleSpeedUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADE8EA11F9270E100C0619D /* VehicleSpeedUtil.swift */; };
+		FADE8EA41F927FBC00C0619D /* ResultUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADE8EA31F927FBC00C0619D /* ResultUtil.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		7CFAA76BF42058E50351C14A /* Pods-OBD II wifi.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OBD II wifi.release.xcconfig"; path = "Pods/Target Support Files/Pods-OBD II wifi/Pods-OBD II wifi.release.xcconfig"; sourceTree = "<group>"; };
 		871DFDB8D35183A4E99C8FEA /* Pods_OBD_II_wifi.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OBD_II_wifi.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F46BCAED09DDD2871104000E /* Pods-OBD II wifi.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OBD II wifi.debug.xcconfig"; path = "Pods/Target Support Files/Pods-OBD II wifi/Pods-OBD II wifi.debug.xcconfig"; sourceTree = "<group>"; };
+		FA2DAA741F929F70001231C9 /* FuelLevelInputUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FuelLevelInputUtil.swift; sourceTree = "<group>"; };
+		FA2DAA761F92A156001231C9 /* FuelPressureUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FuelPressureUtil.swift; sourceTree = "<group>"; };
+		FA2DAA781F92A2CD001231C9 /* RunTimeSinceEngineStartUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunTimeSinceEngineStartUtil.swift; sourceTree = "<group>"; };
+		FA2DAA7A1F92A340001231C9 /* MAFAirFlowRateUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MAFAirFlowRateUtil.swift; sourceTree = "<group>"; };
 		FABEC2FC1F8FC61600B14A90 /* OBDCommandEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OBDCommandEnum.swift; sourceTree = "<group>"; };
 		FACF5B6C1F894FE500A8F438 /* OBDUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OBDUtils.swift; sourceTree = "<group>"; };
 		FACFD3491F894188004F8707 /* OBD II wifi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "OBD II wifi.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -40,6 +49,7 @@
 		FADE8E9D1F92677E00C0619D /* AmbientAirTemperatureUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmbientAirTemperatureUtil.swift; sourceTree = "<group>"; };
 		FADE8E9F1F92688000C0619D /* IntakeAirTemperatureUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntakeAirTemperatureUtil.swift; sourceTree = "<group>"; };
 		FADE8EA11F9270E100C0619D /* VehicleSpeedUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehicleSpeedUtil.swift; sourceTree = "<group>"; };
+		FADE8EA31F927FBC00C0619D /* ResultUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultUtil.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +91,11 @@
 				FADE8E9D1F92677E00C0619D /* AmbientAirTemperatureUtil.swift */,
 				FADE8E9F1F92688000C0619D /* IntakeAirTemperatureUtil.swift */,
 				FADE8EA11F9270E100C0619D /* VehicleSpeedUtil.swift */,
+				FADE8EA31F927FBC00C0619D /* ResultUtil.swift */,
+				FA2DAA741F929F70001231C9 /* FuelLevelInputUtil.swift */,
+				FA2DAA761F92A156001231C9 /* FuelPressureUtil.swift */,
+				FA2DAA781F92A2CD001231C9 /* RunTimeSinceEngineStartUtil.swift */,
+				FA2DAA7A1F92A340001231C9 /* MAFAirFlowRateUtil.swift */,
 			);
 			path = OBDUtils;
 			sourceTree = "<group>";
@@ -246,14 +261,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FA2DAA771F92A156001231C9 /* FuelPressureUtil.swift in Sources */,
+				FA2DAA7B1F92A340001231C9 /* MAFAirFlowRateUtil.swift in Sources */,
 				FABEC2FD1F8FC61600B14A90 /* OBDCommandEnum.swift in Sources */,
 				FACF5B6D1F894FE500A8F438 /* OBDUtils.swift in Sources */,
 				FACFD34F1F894188004F8707 /* ViewController.swift in Sources */,
+				FA2DAA751F929F70001231C9 /* FuelLevelInputUtil.swift in Sources */,
+				FA2DAA791F92A2CD001231C9 /* RunTimeSinceEngineStartUtil.swift in Sources */,
 				FADE8E9E1F92677E00C0619D /* AmbientAirTemperatureUtil.swift in Sources */,
 				FACFD34D1F894188004F8707 /* AppDelegate.swift in Sources */,
 				FADE8EA01F92688000C0619D /* IntakeAirTemperatureUtil.swift in Sources */,
 				FADE8EA21F9270E100C0619D /* VehicleSpeedUtil.swift in Sources */,
 				FADE8E9A1F905DCD00C0619D /* EngineCoolantTemperatureUtil.swift in Sources */,
+				FADE8EA41F927FBC00C0619D /* ResultUtil.swift in Sources */,
 				FADE8E9C1F906B0400C0619D /* EngineRPMUtil.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

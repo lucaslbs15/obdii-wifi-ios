@@ -52,7 +52,9 @@ class OBDUtils {
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(deadline), qos: .default, flags: .assignCurrentContext, execute: {
             self.connection.send(data: dataToSend, completion: { data in
                 data.onSuccess(block: {
-                    data in completion(data)
+                    data in
+                    print("send onSuccess: \(data)")
+                    completion(data)
                 })
                 
                 data.onFailure(block: {
@@ -85,6 +87,14 @@ class OBDUtils {
             return IntakeAirTemperatureUtil.calculeTemperature(result: result)
         case .VEHICLE_SPEED:
             return VehicleSpeedUtil.formatSpeed(result: result)
+        case .FUEL_LEVEL_INPUT:
+            return FuelLevelInputUtil.formatLevel(result: result)
+        case .FUEL_PRESSURE:
+            return FuelPressureUtil.formatPressure(result: result)
+        case .RUN_TIME_SINCE_ENGINE_START:
+            return RunTimeSinceEngineStartUtil.formatRunTime(result: result)
+        case .MAF_AIR_FLOW_RATE:
+            return MAFAirFlowRateUtil.formatMAF(result: result)
         default:
             return result
         }

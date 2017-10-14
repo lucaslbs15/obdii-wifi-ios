@@ -10,13 +10,18 @@ import Foundation
 class IntakeAirTemperatureUtil {
     
     class func calculeTemperature(result: String) -> String {
+        print("IntakeAirTemperatureUtil calculeTemperature: \(result)")
+        if (ResultUtil.hasNoData(result: result) || ResultUtil.isUnableToConnect(result: result)) {
+            return "-"
+        }
+        
         let subractNeeded: UInt8 = 40
         
         let stringArray = result.components(separatedBy: " ")
         let desiredData = stringArray[2]
         
         if let value = UInt8(desiredData, radix: 16) {
-            return String(value - subractNeeded)
+            return "\(String(value - subractNeeded)) ºC"
         }
         return "-"
     }

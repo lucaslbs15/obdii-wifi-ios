@@ -10,6 +10,11 @@ import Foundation
 class EngineRPMUtil {
     
     class func calculateRPM(result: String) -> String {
+        print("EngineRPMUtil calculateRPM: \(result)")
+        if (ResultUtil.hasNoData(result: result) || ResultUtil.isUnableToConnect(result: result)) {
+            return "-"
+        }
+        
         let divideFor = 4
         
         let stringArray = result.components(separatedBy: " ")
