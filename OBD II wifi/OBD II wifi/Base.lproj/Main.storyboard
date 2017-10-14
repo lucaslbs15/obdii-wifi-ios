@@ -289,6 +289,7 @@
                         <outlet property="fuelPressureLabel" destination="LIe-Yp-rbH" id="RQx-mG-nQr"/>
                         <outlet property="hostTextField" destination="y7u-z6-7fb" id="I6J-KU-ZLJ"/>
                         <outlet property="identityLabel" destination="lTR-HJ-iZA" id="z0j-Rf-5w0"/>
+                        <outlet property="mafAirFlowRateLabel" destination="koj-Hc-0PM" id="5PY-r7-GEz"/>
                         <outlet property="portTextField" destination="Qxq-6Z-KWw" id="Kcq-GT-azE"/>
                         <outlet property="runTimeEngineLabel" destination="2vU-sw-i5d" id="jep-ph-WPO"/>
                         <outlet property="sendDataButton" destination="BSG-Nv-c0o" id="tTD-U0-Vei"/>
