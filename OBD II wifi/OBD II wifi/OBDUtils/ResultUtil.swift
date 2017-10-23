@@ -16,4 +16,8 @@ class ResultUtil {
     class func isUnableToConnect(result: String) -> Bool {
         return result.uppercased().range(of: "UNABLE TO CONNECT") != nil
     }
+    
+    class func isNotReturnATCommand(result: String, obdCommand: OBDCommandEnum) -> Bool {
+        return result.uppercased().range(of: obdCommand.rawValue) != nil
+    }
 }

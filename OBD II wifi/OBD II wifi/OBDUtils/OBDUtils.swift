@@ -72,7 +72,7 @@ class OBDUtils {
         }
     }
     
-    class func replaceOBDCommandResult(result: String, obdCommand: OBDCommandEnum) -> String {
+    class func replaceOBDCommandResult(result: String, obdCommand: OBDCommandEnum) -> String! {
         switch obdCommand {
         case .IDENTITY, .PROTOCOL_0, .DISPLAY_ACTIVITY_MONITOR_COUNT,
              .MONITOR_ALL, .READ_INPUT_VOLTAGE, .RESET:
@@ -100,7 +100,10 @@ class OBDUtils {
         }
     }
     
-    class func replaceATCommand(result: String, obdCommand: OBDCommandEnum) -> String {
+    class func replaceATCommand(result: String, obdCommand: OBDCommandEnum) -> String! {
+        if (!ResultUtil.isNotReturnATCommand(result: result, obdCommand: obdCommand)) {
+            return nil
+        }
         let resultArray = result.components(separatedBy: "\(obdCommand.rawValue)\r")
         return resultArray[1]
     }
