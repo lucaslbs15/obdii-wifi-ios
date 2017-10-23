@@ -73,8 +73,15 @@ class ViewController: UIViewController {
     private func sendData(obdCommand: OBDCommandEnum, label: UILabel) {
         obdUtils.startRead(deadline: 4, dataString: obdCommand.rawValue) {
             (result: String) in
-            label.text = OBDUtils.replaceOBDCommandResult(result: result, obdCommand: obdCommand)
-            self.chooseDataToSend(previousOBDCommand: obdCommand)
+            if let commandResult = OBDUtils.replaceOBDCommandResult(result: result, obdCommand: obdCommand) {
+                label.text = commandResult
+                self.chooseDataToSend(previousOBDCommand: obdCommand)
+            } else {
+                let alert = UIAlertController(title: "Atenção", message: "Não foi possível conectar no dispositivo OBD II. Verifique se o seu iOS está conectado via wifi com o OBD II do carro.", preferredStyle: UIAlertControllerStyle.alert)
+                let action = UIAlertAction(title: "Ok", style: .default, handler: nil)
+                alert.addAction(action)
+                self.present(alert, animated: true, completion: nil)
+            }
         }
     }
     
