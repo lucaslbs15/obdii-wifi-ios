@@ -25,10 +25,14 @@ class ViewController: UIViewController {
     @IBOutlet weak var mafAirFlowRateLabel: UILabel!;
     @IBOutlet weak var statusLabel: UILabel!
     
+    var previousLabel: UILabel!
+    var defaultFont: UIFont!
+    
     private var obdUtils: OBDUtils!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        defaultFont = identityLabel.font
     }
     
     @IBAction func sendData() {
@@ -75,6 +79,11 @@ class ViewController: UIViewController {
             (result: String) in
             if let commandResult = OBDUtils.replaceOBDCommandResult(result: result, obdCommand: obdCommand) {
                 label.text = commandResult
+                label.font = UIFont.boldSystemFont(ofSize: label.font.pointSize)
+                if (self.previousLabel != nil) {
+                    self.previousLabel.font = self.defaultFont
+                }
+                self.previousLabel = label
                 self.chooseDataToSend(previousOBDCommand: obdCommand)
             } else {
                 let alert = UIAlertController(title: "Atenção", message: "Não foi possível conectar no dispositivo OBD II. Verifique se o seu iOS está conectado via wifi com o OBD II do carro. Feche e abra novamente o aplicativo.", preferredStyle: UIAlertControllerStyle.alert)
@@ -113,6 +122,9 @@ class ViewController: UIViewController {
             break
         case .AMBIENT_AIR_TEMPERATURE:
             sendData(obdCommand: OBDCommandEnum.MAF_AIR_FLOW_RATE, label: mafAirFlowRateLabel)
+            break
+        case .MAF_AIR_FLOW_RATE:
+            prepareToRead(obdCommand: OBDCommandEnum.RESET)
             break
         default:
             sendData(obdCommand: OBDCommandEnum.IDENTITY, label: identityLabel)
