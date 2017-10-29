@@ -81,8 +81,8 @@ class OBDUtils {
             return EngineCoolantTemperatureUtil.calculeTemperature(result: result)
         case .ENGINE_RPM:
             return EngineRPMUtil.calculateRPM(result: result)
-        case .AMBIENT_AIR_TEMPERATURE:
-            return AmbientAirTemperatureUtil.calculeTemperature(result: result)
+        /*case .AMBIENT_AIR_TEMPERATURE:
+            return AmbientAirTemperatureUtil.calculeTemperature(result: result)*/
         case .INTAKE_AIR_TEMPERATURE:
             return IntakeAirTemperatureUtil.calculeTemperature(result: result)
         case .VEHICLE_SPEED:
@@ -91,10 +91,10 @@ class OBDUtils {
             return FuelLevelInputUtil.formatLevel(result: result)
         case .FUEL_PRESSURE:
             return FuelPressureUtil.formatPressure(result: result)
-        case .RUN_TIME_SINCE_ENGINE_START:
-            return RunTimeSinceEngineStartUtil.formatRunTime(result: result)
-        case .MAF_AIR_FLOW_RATE:
-            return MAFAirFlowRateUtil.formatMAF(result: result)
+        /*case .RUN_TIME_SINCE_ENGINE_START:
+            return RunTimeSinceEngineStartUtil.formatRunTime(result: result)*/
+        /*case .MAF_AIR_FLOW_RATE:
+            return MAFAirFlowRateUtil.formatMAF(result: result)*/
         default:
             return result
         }
