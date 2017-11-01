@@ -10,12 +10,6 @@ import Foundation
 class VehicleSpeedUtil {
     
     class func formatSpeed(result: String) -> String {
-        /*
-         010D
-         41 0D 00
-         
-         result    String    "010D\r41 0D 00 \r\r>"
-         */
         print("VehicleSpeedUtil - formatSpeed: \(result)")
         if (ResultUtil.hasNoData(result: result) || ResultUtil.isUnableToConnect(result: result)) {
             return "-"

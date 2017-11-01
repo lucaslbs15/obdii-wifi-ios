@@ -15,10 +15,8 @@ class EngineCoolantTemperatureUtil {
             return "-"
         }
         let subractNeeded: UInt8 = 40
-        
         let stringArray = result.components(separatedBy: " ")
         let desiredData = stringArray[2]
-        
         if let value = UInt8(desiredData, radix: 16) {
             return "\(String(value - subractNeeded)) ºC"
         }

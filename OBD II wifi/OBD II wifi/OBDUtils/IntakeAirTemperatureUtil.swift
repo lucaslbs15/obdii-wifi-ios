@@ -14,9 +14,7 @@ class IntakeAirTemperatureUtil {
         if (ResultUtil.hasNoData(result: result) || ResultUtil.isUnableToConnect(result: result)) {
             return "-"
         }
-        
         let subractNeeded: UInt8 = 40
-        
         let stringArray = result.components(separatedBy: " ")
         let desiredData = stringArray[2]
         

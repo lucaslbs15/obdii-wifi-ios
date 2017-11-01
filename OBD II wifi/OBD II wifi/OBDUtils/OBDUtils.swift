@@ -64,6 +64,25 @@ class OBDUtils {
         })
     }
     
+    func startRead(deadline: Int, dataString: String, label: UILabel!, completion: @escaping (_ result: String) -> Void) {
+        let commandString: String = "\(dataString)\r"
+        let dataToSend: Data = commandString.data(using: .ascii)!
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(deadline), qos: .default, flags: .assignCurrentContext, execute: {
+            self.connection.send(data: dataToSend, completion: { data in
+                data.onSuccess(block: {
+                    data in
+                    print("send onSuccess: \(data)")
+                    label.text = ResultUtil.rawResult(result: data)
+                    completion(data)
+                })
+                
+                data.onFailure(block: {
+                    error in completion(String(describing: error))
+                })
+            })
+        })
+    }
+    
     func prepareToRead(obdCommand: OBDCommandEnum, completion: @escaping (_ result: Bool) -> Void) {
         startRead(deadline: 4, dataString: obdCommand.rawValue) {
             (result: String) in

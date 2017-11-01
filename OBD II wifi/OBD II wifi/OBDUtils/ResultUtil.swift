@@ -24,4 +24,9 @@ class ResultUtil {
     class func isReturn41Command(result: String, obdCommand: OBDCommandEnum) -> Bool {
         return result.uppercased().range(of: obdCommand.rawValue) != nil
     }
+    
+    class func rawResult(result: String) -> String {
+        let stringReplaced = result.replacingOccurrences(of: "\r", with: " ").replacingOccurrences(of: ">", with: "")
+        return stringReplaced
+    }
 }

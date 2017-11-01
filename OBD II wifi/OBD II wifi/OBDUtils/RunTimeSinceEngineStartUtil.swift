@@ -14,8 +14,9 @@ class RunTimeSinceEngineStartUtil {
             return "-"
         }
         let stringArray = result.components(separatedBy: " ")
-        let desiredData = stringArray[2]
-        let runTime = UInt8(desiredData, radix: 16)
-        return "\(runTime!) segundos"
+        let firstByte = UInt(strtoul(stringArray[2], nil, 16))
+        let secondByte = UInt(strtoul(stringArray[3], nil, 16))
+        let calculation = (firstByte * 256) + secondByte
+        return "\(calculation) segundos"
     }
 }
