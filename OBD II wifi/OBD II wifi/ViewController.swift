@@ -24,6 +24,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var ambientTemperatureLabel: UILabel!;
     @IBOutlet weak var mafAirFlowRateLabel: UILabel!;
     @IBOutlet weak var statusLabel: UILabel!
+    @IBOutlet weak var textField: UITextField!
     
     var previousLabel: UILabel!
     var defaultFont: UIFont!
@@ -33,6 +34,8 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         defaultFont = identityLabel.font
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.tap(gesture:)))
+        self.view.addGestureRecognizer(tapGesture)
     }
     
     @IBAction func sendData() {
@@ -136,6 +139,8 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
-
+    @objc func tap(gesture: UITapGestureRecognizer) {
+        textField.resignFirstResponder()
+    }
 }
 

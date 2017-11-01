@@ -12,7 +12,7 @@ enum OBDCommandEnum: String {
     case RESET = "ATZ"
     case IDENTITY = "ATI"
     case READ_INPUT_VOLTAGE = "ATRV"
-    case FUEL_LEVEL_INPUT = "012F"
+    case FUEL_LEVEL_INPUT = "0106"
     case FUEL_PRESSURE = "010A"
     case FUEL_PRESSURE_DIESEL = "0123"
     case ENGINE_COOLANT_TEMPERATURE = "0105"
