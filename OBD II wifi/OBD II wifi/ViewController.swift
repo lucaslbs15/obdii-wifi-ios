@@ -14,16 +14,27 @@ class ViewController: UIViewController {
     @IBOutlet weak var hostTextField: UITextField!
     @IBOutlet weak var portTextField: UITextField!
     @IBOutlet weak var identityLabel: UILabel!;
+    @IBOutlet weak var identityHexLabel: UILabel!;
     @IBOutlet weak var voltageLabel: UILabel!;
+    @IBOutlet weak var voltageHexLabel: UILabel!;
     @IBOutlet weak var fuelInputLabel: UILabel!;
+    @IBOutlet weak var fuelInputHexLabel: UILabel!;
     @IBOutlet weak var fuelPressureLabel: UILabel!;
+    @IBOutlet weak var fuelPressureHexLabel: UILabel!;
     @IBOutlet weak var engineTemperatureLabel: UILabel!;
+    @IBOutlet weak var engineTemperatureHexLabel: UILabel!;
     @IBOutlet weak var engineRPMLabel: UILabel!;
+    @IBOutlet weak var engineRPMHexLabel: UILabel!;
     @IBOutlet weak var vehicleSpeedLabel: UILabel!;
+    @IBOutlet weak var vehicleSpeedHexLabel: UILabel!;
     @IBOutlet weak var runTimeEngineLabel: UILabel!;
+    @IBOutlet weak var runTimeEngineHexLabel: UILabel!;
     @IBOutlet weak var ambientTemperatureLabel: UILabel!;
+    @IBOutlet weak var ambientTemperatureHexLabel: UILabel!;
     @IBOutlet weak var mafAirFlowRateLabel: UILabel!;
+    @IBOutlet weak var mafAirFlowRateHexLabel: UILabel!;
     @IBOutlet weak var statusLabel: UILabel!
+    @IBOutlet weak var statusHexLabel: UILabel!
     @IBOutlet weak var textField: UITextField!
     
     var previousLabel: UILabel!
@@ -78,59 +89,80 @@ class ViewController: UIViewController {
     }
     
     private func sendData(obdCommand: OBDCommandEnum, label: UILabel) {
-        obdUtils.startRead(deadline: 4, dataString: obdCommand.rawValue) {
+        //original was deadline == 4
+        obdUtils.startRead(deadline: 1, dataString: obdCommand.rawValue) {
             (result: String) in
             if let commandResult = OBDUtils.replaceOBDCommandResult(result: result, obdCommand: obdCommand) {
-                label.text = commandResult
-                label.font = UIFont.boldSystemFont(ofSize: label.font.pointSize)
-                if (self.previousLabel != nil) {
-                    self.previousLabel.font = self.defaultFont
-                }
-                self.previousLabel = label
-                self.chooseDataToSend(previousOBDCommand: obdCommand)
+                self.setLabel(label: label, commandResult: commandResult, obdCommand: obdCommand)
             } else {
-                let alert = UIAlertController(title: "Atenção", message: "Não foi possível conectar no dispositivo OBD II. Verifique se o seu iOS está conectado via wifi com o OBD II do carro. Feche e abra novamente o aplicativo.", preferredStyle: UIAlertControllerStyle.alert)
-                let action = UIAlertAction(title: "Ok", style: .default, handler: nil)
-                alert.addAction(action)
-                self.present(alert, animated: true, completion: nil)
+                self.showErrorAlert()
             }
         }
+    }
+    
+    private func sendData(obdCommand: OBDCommandEnum, label: UILabel, labelWithHex: UILabel) {
+        //original was deadline == 4
+        obdUtils.startRead(deadline: 1, dataString: obdCommand.rawValue, label: labelWithHex) {
+            (result: String) in
+            if let commandResult = OBDUtils.replaceOBDCommandResult(result: result, obdCommand: obdCommand) {
+                self.setLabel(label: label, commandResult: commandResult, obdCommand: obdCommand)
+            } else {
+                self.showErrorAlert()
+            }
+        }
+    }
+    
+    private func setLabel(label: UILabel, commandResult: String, obdCommand: OBDCommandEnum) {
+        label.text = commandResult
+        label.font = UIFont.boldSystemFont(ofSize: label.font.pointSize)
+        if (self.previousLabel != nil) {
+            self.previousLabel.font = self.defaultFont
+        }
+        self.previousLabel = label
+        self.chooseDataToSend(previousOBDCommand: obdCommand)
+    }
+    
+    private func showErrorAlert() {
+        let alert = UIAlertController(title: "Atenção", message: "Não foi possível conectar no dispositivo OBD II. Verifique se o seu iOS está conectado via wifi com o OBD II do carro. Feche e abra novamente o aplicativo.", preferredStyle: UIAlertControllerStyle.alert)
+        let action = UIAlertAction(title: "Ok", style: .default, handler: nil)
+        alert.addAction(action)
+        self.present(alert, animated: true, completion: nil)
     }
     
     private func chooseDataToSend(previousOBDCommand: OBDCommandEnum) {
         switch previousOBDCommand {
         case .IDENTITY:
-            sendData(obdCommand: OBDCommandEnum.READ_INPUT_VOLTAGE, label: voltageLabel)
+            sendData(obdCommand: OBDCommandEnum.READ_INPUT_VOLTAGE, label: voltageLabel, labelWithHex: voltageHexLabel)
             break
         case .READ_INPUT_VOLTAGE:
-            sendData(obdCommand: OBDCommandEnum.FUEL_LEVEL_INPUT, label: fuelInputLabel)
+            sendData(obdCommand: OBDCommandEnum.FUEL_LEVEL_INPUT, label: fuelInputLabel, labelWithHex: fuelInputHexLabel)
             break
         case .FUEL_LEVEL_INPUT:
-            sendData(obdCommand: OBDCommandEnum.FUEL_PRESSURE, label: fuelPressureLabel)
+            sendData(obdCommand: OBDCommandEnum.FUEL_PRESSURE, label: fuelPressureLabel, labelWithHex: fuelPressureHexLabel)
             break
         case .FUEL_PRESSURE:
-            sendData(obdCommand: OBDCommandEnum.ENGINE_COOLANT_TEMPERATURE, label: engineTemperatureLabel)
+            sendData(obdCommand: OBDCommandEnum.ENGINE_COOLANT_TEMPERATURE, label: engineTemperatureLabel, labelWithHex: engineTemperatureHexLabel)
             break
         case .ENGINE_COOLANT_TEMPERATURE:
-            sendData(obdCommand: OBDCommandEnum.ENGINE_RPM, label: engineRPMLabel)
+            sendData(obdCommand: OBDCommandEnum.ENGINE_RPM, label: engineRPMLabel, labelWithHex: engineRPMHexLabel)
             break
         case .ENGINE_RPM:
-            sendData(obdCommand: OBDCommandEnum.VEHICLE_SPEED, label: vehicleSpeedLabel)
+            sendData(obdCommand: OBDCommandEnum.VEHICLE_SPEED, label: vehicleSpeedLabel, labelWithHex: vehicleSpeedHexLabel)
             break
         case .VEHICLE_SPEED:
-            sendData(obdCommand: OBDCommandEnum.RUN_TIME_SINCE_ENGINE_START, label: runTimeEngineLabel)
+            sendData(obdCommand: OBDCommandEnum.RUN_TIME_SINCE_ENGINE_START, label: runTimeEngineLabel, labelWithHex: runTimeEngineHexLabel)
             break
         case .RUN_TIME_SINCE_ENGINE_START:
-            sendData(obdCommand: OBDCommandEnum.AMBIENT_AIR_TEMPERATURE, label: ambientTemperatureLabel)
+            sendData(obdCommand: OBDCommandEnum.AMBIENT_AIR_TEMPERATURE, label: ambientTemperatureLabel, labelWithHex: ambientTemperatureHexLabel)
             break
         case .AMBIENT_AIR_TEMPERATURE:
-            sendData(obdCommand: OBDCommandEnum.MAF_AIR_FLOW_RATE, label: mafAirFlowRateLabel)
+            sendData(obdCommand: OBDCommandEnum.MAF_AIR_FLOW_RATE, label: mafAirFlowRateLabel, labelWithHex: mafAirFlowRateHexLabel)
             break
         case .MAF_AIR_FLOW_RATE:
             prepareToRead(obdCommand: OBDCommandEnum.RESET)
             break
         default:
-            sendData(obdCommand: OBDCommandEnum.IDENTITY, label: identityLabel)
+            sendData(obdCommand: OBDCommandEnum.IDENTITY, label: identityLabel, labelWithHex: identityHexLabel)
         }
     }
 

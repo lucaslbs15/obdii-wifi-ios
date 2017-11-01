@@ -14,7 +14,6 @@ class EngineRPMUtil {
         if (ResultUtil.hasNoData(result: result) || ResultUtil.isUnableToConnect(result: result)) {
             return "-"
         }
-        
         let divideFor: UInt = 4
         let base: UInt = 256
         let stringArray = result.components(separatedBy: " ")

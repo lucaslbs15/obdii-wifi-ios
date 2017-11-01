@@ -16,10 +16,11 @@ class FuelLevelInputUtil {
         }
         let stringArray = result.components(separatedBy: " ")
         let desiredData = stringArray[2]
-        let fuelLevel = UInt8(desiredData, radix: 16)
-        //0.7812 * (A - 128)
-        //41 06 7E
-        let calculation = Double((fuelLevel! - 128)) * 0.7812
+        let fuelLevel = UInt(strtoul(desiredData, nil, 16))
+        if (fuelLevel < 128) {
+            return "0 %"
+        }
+        let calculation = 0.7812 * Double((fuelLevel - 128))
         return "\(calculation) %"
     }
 }

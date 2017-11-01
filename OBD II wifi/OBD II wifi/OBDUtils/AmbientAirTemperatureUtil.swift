@@ -14,12 +14,9 @@ class AmbientAirTemperatureUtil {
         if (ResultUtil.hasNoData(result: result) || ResultUtil.isUnableToConnect(result: result)) {
             return "-"
         }
-        
         let subractNeeded: UInt8 = 40
-        
         let stringArray: [String]! = result.components(separatedBy: " ")
         let desiredData = stringArray[2]
-        
         if let value = UInt8(desiredData, radix: 16) {
             return "\(String(value - subractNeeded)) ºC"
         }
