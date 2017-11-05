@@ -9,7 +9,7 @@
 import Foundation
 class FuelLevelInputUtil {
     
-    class func formatLevel(result: String) -> String {
+    class func formatLevel(result: String) throws -> String {
         print("Fuel level output: \(result)")
         if (ResultUtil.hasNoData(result: result) || ResultUtil.isUnableToConnect(result: result)) {
             return "-"

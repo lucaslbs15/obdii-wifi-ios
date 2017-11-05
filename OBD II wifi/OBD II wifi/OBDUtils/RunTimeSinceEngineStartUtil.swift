@@ -9,7 +9,7 @@
 import Foundation
 class RunTimeSinceEngineStartUtil {
     
-    class func formatRunTime(result: String) -> String {
+    class func formatRunTime(result: String) throws -> String {
         if (ResultUtil.hasNoData(result: result) || ResultUtil.isUnableToConnect(result: result)) {
             return "-"
         }

@@ -9,7 +9,7 @@
 import Foundation
 class EngineCoolantTemperatureUtil {
     
-    class func calculeTemperature(result: String) -> String {
+    class func calculeTemperature(result: String) throws -> String {
         print("EngineCoolantTemperatureUtil calculateTemperature: \(result)")
         if (ResultUtil.hasNoData(result: result) || ResultUtil.isUnableToConnect(result: result)) {
             return "-"

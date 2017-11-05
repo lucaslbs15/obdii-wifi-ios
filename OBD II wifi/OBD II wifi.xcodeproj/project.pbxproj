@@ -19,6 +19,7 @@
 		FACFD3521F894188004F8707 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FACFD3501F894188004F8707 /* Main.storyboard */; };
 		FACFD3541F894188004F8707 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FACFD3531F894188004F8707 /* Assets.xcassets */; };
 		FACFD3571F894188004F8707 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FACFD3551F894188004F8707 /* LaunchScreen.storyboard */; };
+		FAD4C9C61FAF6FBA007A4C97 /* ResultType.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD4C9C51FAF6FBA007A4C97 /* ResultType.swift */; };
 		FADE8E9A1F905DCD00C0619D /* EngineCoolantTemperatureUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADE8E991F905DCD00C0619D /* EngineCoolantTemperatureUtil.swift */; };
 		FADE8E9C1F906B0400C0619D /* EngineRPMUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADE8E9B1F906B0400C0619D /* EngineRPMUtil.swift */; };
 		FADE8E9E1F92677E00C0619D /* AmbientAirTemperatureUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADE8E9D1F92677E00C0619D /* AmbientAirTemperatureUtil.swift */; };
@@ -44,6 +45,7 @@
 		FACFD3531F894188004F8707 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FACFD3561F894188004F8707 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FACFD3581F894188004F8707 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FAD4C9C51FAF6FBA007A4C97 /* ResultType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultType.swift; sourceTree = "<group>"; };
 		FADE8E991F905DCD00C0619D /* EngineCoolantTemperatureUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EngineCoolantTemperatureUtil.swift; sourceTree = "<group>"; };
 		FADE8E9B1F906B0400C0619D /* EngineRPMUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EngineRPMUtil.swift; sourceTree = "<group>"; };
 		FADE8E9D1F92677E00C0619D /* AmbientAirTemperatureUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmbientAirTemperatureUtil.swift; sourceTree = "<group>"; };
@@ -96,6 +98,7 @@
 				FA2DAA761F92A156001231C9 /* FuelPressureUtil.swift */,
 				FA2DAA781F92A2CD001231C9 /* RunTimeSinceEngineStartUtil.swift */,
 				FA2DAA7A1F92A340001231C9 /* MAFAirFlowRateUtil.swift */,
+				FAD4C9C51FAF6FBA007A4C97 /* ResultType.swift */,
 			);
 			path = OBDUtils;
 			sourceTree = "<group>";
@@ -271,6 +274,7 @@
 				FADE8E9E1F92677E00C0619D /* AmbientAirTemperatureUtil.swift in Sources */,
 				FACFD34D1F894188004F8707 /* AppDelegate.swift in Sources */,
 				FADE8EA01F92688000C0619D /* IntakeAirTemperatureUtil.swift in Sources */,
+				FAD4C9C61FAF6FBA007A4C97 /* ResultType.swift in Sources */,
 				FADE8EA21F9270E100C0619D /* VehicleSpeedUtil.swift in Sources */,
 				FADE8E9A1F905DCD00C0619D /* EngineCoolantTemperatureUtil.swift in Sources */,
 				FADE8EA41F927FBC00C0619D /* ResultUtil.swift in Sources */,

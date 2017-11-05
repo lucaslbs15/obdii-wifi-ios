@@ -10,11 +10,11 @@ import Foundation
 class ResultUtil {
     
     class func hasNoData(result: String) -> Bool {
-        return result.uppercased().range(of: "NO DATA") != nil
+        return result.uppercased().range(of: ResultType.NO_DATA.rawValue) != nil
     }
     
     class func isUnableToConnect(result: String) -> Bool {
-        return result.uppercased().range(of: "UNABLE TO CONNECT") != nil
+        return result.uppercased().range(of: ResultType.UNABLE_TO_CONNECT.rawValue) != nil
     }
     
     class func isReturnATCommand(result: String, obdCommand: OBDCommandEnum) -> Bool {

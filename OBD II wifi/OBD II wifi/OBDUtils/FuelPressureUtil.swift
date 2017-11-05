@@ -9,7 +9,7 @@
 import Foundation
 class FuelPressureUtil {
     
-    class func formatPressure(result: String) -> String {
+    class func formatPressure(result: String) throws -> String {
         if (ResultUtil.hasNoData(result: result) || ResultUtil.isUnableToConnect(result: result)) {
             return "-"
         }
