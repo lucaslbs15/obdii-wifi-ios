@@ -193,18 +193,56 @@ class ViewController: UIViewController {
             sendData(obdCommand: OBDCommandEnum.MAF_AIR_FLOW_RATE, label: mafAirFlowRateLabel, labelWithHex: mafAirFlowRateHexLabel)
             break
         case .MAF_AIR_FLOW_RATE:
+            sendData(obdCommand: OBDCommandEnum.DISPLAY_ACTIVITY_MONITOR_COUNT, label: activityMonitorCountLabel, labelWithHex: activityMonitorCountHexLabel)
+            break
+        case .DISPLAY_ACTIVITY_MONITOR_COUNT:
+            sendData(obdCommand: OBDCommandEnum.INTAKE_AIR_TEMPERATURE, label: intakeAirTempLabel, labelWithHex: intakeAirTempHexLabel)
+            break
+        case .INTAKE_AIR_TEMPERATURE:
+            sendData(obdCommand: OBDCommandEnum.INTAKE_MANIFOLD_PRESSURE, label: intakeManifoldPressureLabel, labelWithHex: intakeManifoldPressureHexLabel)
+            break
+        case .INTAKE_MANIFOLD_PRESSURE:
+            sendData(obdCommand: OBDCommandEnum.TIMING_ADVANCE, label: timingAdvanceLabel, labelWithHex: timingAdvanceHexLabel)
+            break
+        case .TIMING_ADVANCE:
+            sendData(obdCommand: OBDCommandEnum.BAROMETRIC_PRESSURE, label: barometricPressureLabel, labelWithHex: barometricPressureHexLabel)
+            break
+        case .BAROMETRIC_PRESSURE:
+            sendData(obdCommand: OBDCommandEnum.DISTANCE_TRAVELED_WITH_MALFUNCTION, label: distanceTraveledWithMalfunctionLabel, labelWithHex: distanceTraveledWithMalfunctionHexLabel)
+            break
+        case .DISTANCE_TRAVELED_WITH_MALFUNCTION:
+            sendData(obdCommand: OBDCommandEnum.FUEL_RAIL_PRESSURE, label: fuelRailPressureLabel, labelWithHex: fuelRailPressureHexLabel)
+            break
+        case .FUEL_RAIL_PRESSURE:
+            sendData(obdCommand: OBDCommandEnum.FUEL_RAIL_GAUGE_PRESSURE, label: fuelRailGaugePressureLabel, labelWithHex: fuelRailGaugePressureHexLabel)
+            break
+        case .FUEL_RAIL_GAUGE_PRESSURE:
+            sendData(obdCommand: OBDCommandEnum.FUEL_TYPE, label: fuelTypeLabel, labelWithHex: fuelTypeHexLabel)
+            break
+        case .FUEL_TYPE:
+            sendData(obdCommand: OBDCommandEnum.FUEL_PRESSURE_CONTROL_SYSTEM, label: fuelPressureControlSystemLabel, labelWithHex: fuelPressureControlSystemHexLabel)
+            break
+        case .FUEL_PRESSURE_CONTROL_SYSTEM:
+            sendData(obdCommand: OBDCommandEnum.INJECTION_PRESSURE_CONTROL_SYSTEM, label: injectionPressureControlSystemLabel, labelWithHex: injectionPressureControlSystemHexLabel)
+            break
+        case .INJECTION_PRESSURE_CONTROL_SYSTEM:
+            sendData(obdCommand: OBDCommandEnum.ENGINE_OIL_TEMPERATURE, label: engineOilTemperaturaLabel, labelWithHex: engineOilTemperaturaHexLabel)
+            break
+        case .ENGINE_OIL_TEMPERATURE:
+            sendData(obdCommand: OBDCommandEnum.FUEL_INJECTION_TIMING, label: fuelInjectionTimingLabel, labelWithHex: fuelInjectionTimingHexLabel)
+            break
+        case .FUEL_INJECTION_TIMING:
+            sendData(obdCommand: OBDCommandEnum.HYBRID_BATTERY_PACK_REMAINING_LIFE, label: hybridBatteryPackRemainingLifeLabel, labelWithHex: hybridBatteryPackRemainingLifeHexLabel)
+            break
+        case .HYBRID_BATTERY_PACK_REMAINING_LIFE:
+            sendData(obdCommand: OBDCommandEnum.ENGINE_FUEL_RATE, label: engineFuelRateLabel, labelWithHex: engineFuelRateHexLabel)
+            break
+        case .ENGINE_FUEL_RATE:
             prepareToRead(obdCommand: OBDCommandEnum.RESET)
             break
         default:
             sendData(obdCommand: OBDCommandEnum.IDENTITY, label: identityLabel, labelWithHex: identityHexLabel)
         }
-        //no último case: prepareToRead(obdCommand: OBDCommandEnum.RESET)
-        
-        //new commands
-        //DISPLAY_ACTIVITY_MONITOR_COUNT*, INTAKE_AIR_TEMPERATURE*, INTAKE_MANIFOLD_PRESSURE*, TIMING_ADVANCE*,
-        //FUEL_PRESSURE_DIESEL*, BAROMETRIC_PRESSURE*, DISTANCE_TRAVELED_WITH_MALFUNCTION*, FUEL_RAIL_PRESSURE*,
-        //FUEL_RAIL_GAUGE_PRESSURE*, FUEL_TYPE*, FUEL_PRESSURE_CONTROL_SYSTEM*, INJECTION_PRESSURE_CONTROL_SYSTEM*
-        //ENGINE_OIL_TEMPERATURE*, FUEL_INJECTION_TIMING*, ENGINE_FUEL_RATE*, HYBRID_BATTERY_PACK_REMAINING_LIFE
     }
 
     override func didReceiveMemoryWarning() {
