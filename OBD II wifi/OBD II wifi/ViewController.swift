@@ -37,6 +37,39 @@ class ViewController: UIViewController {
     @IBOutlet weak var statusHexLabel: UILabel!
     @IBOutlet weak var textField: UITextField!
     
+    @IBOutlet weak var activityMonitorCountLabel: UILabel!
+    @IBOutlet weak var activityMonitorCountHexLabel: UILabel!
+    @IBOutlet weak var intakeAirTempLabel: UILabel!
+    @IBOutlet weak var intakeAirTempHexLabel: UILabel!
+    @IBOutlet weak var intakeManifoldPressureLabel: UILabel!
+    @IBOutlet weak var intakeManifoldPressureHexLabel: UILabel!
+    @IBOutlet weak var timingAdvanceLabel: UILabel!
+    @IBOutlet weak var timingAdvanceHexLabel: UILabel!
+    @IBOutlet weak var fuelPressureDieselLabel: UILabel!
+    @IBOutlet weak var fuelPressureDieselHexLabel: UILabel!
+    @IBOutlet weak var barometricPressureLabel: UILabel!
+    @IBOutlet weak var barometricPressureHexLabel: UILabel!
+    @IBOutlet weak var distanceTraveledWithMalfunctionLabel: UILabel!
+    @IBOutlet weak var distanceTraveledWithMalfunctionHexLabel: UILabel!
+    @IBOutlet weak var fuelRailPressureLabel: UILabel!
+    @IBOutlet weak var fuelRailPressureHexLabel: UILabel!
+    @IBOutlet weak var fuelRailGaugePressureLabel: UILabel!
+    @IBOutlet weak var fuelRailGaugePressureHexLabel: UILabel!
+    @IBOutlet weak var fuelTypeLabel: UILabel!
+    @IBOutlet weak var fuelTypeHexLabel: UILabel!
+    @IBOutlet weak var fuelPressureControlSystemLabel: UILabel!
+    @IBOutlet weak var fuelPressureControlSystemHexLabel: UILabel!
+    @IBOutlet weak var injectionPressureControlSystemLabel: UILabel!
+    @IBOutlet weak var injectionPressureControlSystemHexLabel: UILabel!
+    @IBOutlet weak var engineOilTemperaturaLabel: UILabel!
+    @IBOutlet weak var engineOilTemperaturaHexLabel: UILabel!
+    @IBOutlet weak var fuelInjectionTimingLabel: UILabel!
+    @IBOutlet weak var fuelInjectionTimingHexLabel: UILabel!
+    @IBOutlet weak var engineFuelRateLabel: UILabel!
+    @IBOutlet weak var engineFuelRateHexLabel: UILabel!
+    @IBOutlet weak var hybridBatteryPackRemainingLifeLabel: UILabel!
+    @IBOutlet weak var hybridBatteryPackRemainingLifeHexLabel: UILabel!
+    
     var previousLabel: UILabel!
     var defaultFont: UIFont!
     
@@ -165,6 +198,13 @@ class ViewController: UIViewController {
         default:
             sendData(obdCommand: OBDCommandEnum.IDENTITY, label: identityLabel, labelWithHex: identityHexLabel)
         }
+        //no último case: prepareToRead(obdCommand: OBDCommandEnum.RESET)
+        
+        //new commands
+        //DISPLAY_ACTIVITY_MONITOR_COUNT*, INTAKE_AIR_TEMPERATURE*, INTAKE_MANIFOLD_PRESSURE*, TIMING_ADVANCE*,
+        //FUEL_PRESSURE_DIESEL*, BAROMETRIC_PRESSURE*, DISTANCE_TRAVELED_WITH_MALFUNCTION*, FUEL_RAIL_PRESSURE*,
+        //FUEL_RAIL_GAUGE_PRESSURE*, FUEL_TYPE*, FUEL_PRESSURE_CONTROL_SYSTEM*, INJECTION_PRESSURE_CONTROL_SYSTEM*
+        //ENGINE_OIL_TEMPERATURE*, FUEL_INJECTION_TIMING*, ENGINE_FUEL_RATE*, HYBRID_BATTERY_PACK_REMAINING_LIFE
     }
 
     override func didReceiveMemoryWarning() {
