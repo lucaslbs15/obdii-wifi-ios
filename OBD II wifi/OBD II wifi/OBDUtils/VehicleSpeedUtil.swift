@@ -9,7 +9,7 @@
 import Foundation
 class VehicleSpeedUtil {
     
-    class func formatSpeed(result: String) -> String {
+    class func formatSpeed(result: String) throws -> String {
         print("VehicleSpeedUtil - formatSpeed: \(result)")
         if (ResultUtil.hasNoData(result: result) || ResultUtil.isUnableToConnect(result: result)) {
             return "-"

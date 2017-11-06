@@ -92,30 +92,86 @@ class OBDUtils {
     }
     
     class func replaceOBDCommandResult(result: String, obdCommand: OBDCommandEnum) -> String! {
+        var resultFormatted: String!
         switch obdCommand {
         case .IDENTITY, .PROTOCOL_0, .DISPLAY_ACTIVITY_MONITOR_COUNT,
              .MONITOR_ALL, .READ_INPUT_VOLTAGE, .RESET:
-            return replaceATCommand(result: result, obdCommand: obdCommand)
+            do {
+                resultFormatted = try replaceATCommand(result: result, obdCommand: obdCommand)
+            } catch {
+                resultFormatted = ResultType.UNREADABLE.rawValue
+            }
+            break
         case .ENGINE_COOLANT_TEMPERATURE:
-            return EngineCoolantTemperatureUtil.calculeTemperature(result: result)
+            do {
+                resultFormatted = try EngineCoolantTemperatureUtil.calculeTemperature(result: result)
+            } catch {
+                resultFormatted = ResultType.UNREADABLE.rawValue
+            }
+            break
         case .ENGINE_RPM:
-            return EngineRPMUtil.calculateRPM(result: result)
+            do {
+                resultFormatted = try EngineRPMUtil.calculateRPM(result: result)
+            } catch {
+                resultFormatted = ResultType.UNREADABLE.rawValue
+            }
+            break
         case .INTAKE_AIR_TEMPERATURE:
-            return IntakeAirTemperatureUtil.calculeTemperature(result: result)
+            do {
+                resultFormatted = try IntakeAirTemperatureUtil.calculeTemperature(result: result)
+            } catch {
+                resultFormatted = ResultType.UNREADABLE.rawValue
+            }
+            break
         case .VEHICLE_SPEED:
-            return VehicleSpeedUtil.formatSpeed(result: result)
+            do {
+                resultFormatted = try VehicleSpeedUtil.formatSpeed(result: result)
+            } catch {
+                resultFormatted = ResultType.UNREADABLE.rawValue
+            }
+            break
         case .FUEL_LEVEL_INPUT:
-            return FuelLevelInputUtil.formatLevel(result: result)
+            do {
+                resultFormatted = try FuelLevelInputUtil.formatLevel(result: result)
+            } catch {
+                resultFormatted = ResultType.UNREADABLE.rawValue
+            }
+            break
         case .FUEL_PRESSURE:
-            return FuelPressureUtil.formatPressure(result: result)
-        case .RUN_TIME_SINCE_ENGINE_START, .AMBIENT_AIR_TEMPERATURE, .MAF_AIR_FLOW_RATE:
-            return replace41Command(result: result, obdCommand: obdCommand)
+            do {
+                resultFormatted = try FuelPressureUtil.formatPressure(result: result)
+            } catch {
+                resultFormatted = ResultType.UNREADABLE.rawValue
+            }
+            break
+        case .RUN_TIME_SINCE_ENGINE_START:
+            do {
+                resultFormatted = try RunTimeSinceEngineStartUtil.formatRunTime(result: result)
+            } catch {
+                resultFormatted = ResultType.UNREADABLE.rawValue
+            }
+            break
+        case .AMBIENT_AIR_TEMPERATURE:
+            do {
+                resultFormatted = try AmbientAirTemperatureUtil.calculeTemperature(result: result)
+            } catch {
+                resultFormatted = ResultType.UNREADABLE.rawValue
+            }
+            break
+        case .MAF_AIR_FLOW_RATE:
+            do {
+                resultFormatted = try MAFAirFlowRateUtil.formatMAF(result: result)
+            } catch {
+                resultFormatted = ResultType.UNREADABLE.rawValue
+            }
+            break
         default:
-            return result
+            resultFormatted = result
         }
+        return resultFormatted
     }
     
-    class func replaceATCommand(result: String, obdCommand: OBDCommandEnum) -> String! {
+    class func replaceATCommand(result: String, obdCommand: OBDCommandEnum) throws -> String! {
         if (!ResultUtil.isReturnATCommand(result: result, obdCommand: obdCommand)) {
             return nil
         }
@@ -123,7 +179,7 @@ class OBDUtils {
         return resultArray[1]
     }
     
-    class func replace41Command(result: String, obdCommand: OBDCommandEnum) -> String! {
+    class func replace41Command(result: String, obdCommand: OBDCommandEnum) throws -> String! {
         if (!ResultUtil.isReturn41Command(result: result, obdCommand: obdCommand)) {
             return nil
         }

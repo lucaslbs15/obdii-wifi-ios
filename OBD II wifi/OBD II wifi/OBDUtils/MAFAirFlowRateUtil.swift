@@ -9,17 +9,14 @@
 import Foundation
 class MAFAirFlowRateUtil {
     
-    class func formatMAF(result: String) -> String {
-        //result    String    "010D\r41 0D 00 \r\r>"
+    class func formatMAF(result: String) throws -> String {
         if (ResultUtil.hasNoData(result: result) || ResultUtil.isUnableToConnect(result: result)) {
             return "-"
         }
         let stringArray = result.components(separatedBy: " ")
-        let byteAHex = stringArray[1]
-        let byteBHex = stringArray[2]
-        let byteADecimal = UInt(byteAHex, radix: 16)
-        let byteBDecimal = UInt(byteBHex, radix: 16)
-        let rateCalculated = ((256 * byteADecimal!) + byteBDecimal!) / 100
+        let byteADecimal = UInt(strtoul(stringArray[2], nil, 16))
+        let byteBDecimal = UInt(strtoul(stringArray[3], nil, 16))
+        let rateCalculated = ((256 * byteADecimal) + byteBDecimal) / 100
         return "\(rateCalculated) g/s"
     }
 }

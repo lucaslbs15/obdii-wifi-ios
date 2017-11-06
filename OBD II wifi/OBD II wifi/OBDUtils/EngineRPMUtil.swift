@@ -9,7 +9,7 @@
 import Foundation
 class EngineRPMUtil {
     
-    class func calculateRPM(result: String) -> String {
+    class func calculateRPM(result: String) throws -> String {
         print("EngineRPMUtil calculateRPM: \(result)")
         if (ResultUtil.hasNoData(result: result) || ResultUtil.isUnableToConnect(result: result)) {
             return "-"

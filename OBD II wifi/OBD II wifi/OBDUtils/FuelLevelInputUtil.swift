@@ -9,18 +9,19 @@
 import Foundation
 class FuelLevelInputUtil {
     
-    class func formatLevel(result: String) -> String {
+    class func formatLevel(result: String) throws -> String {
         print("Fuel level output: \(result)")
         if (ResultUtil.hasNoData(result: result) || ResultUtil.isUnableToConnect(result: result)) {
             return "-"
         }
         let stringArray = result.components(separatedBy: " ")
         let desiredData = stringArray[2]
+        print("desiredData - \(desiredData)")
         let fuelLevel = UInt(strtoul(desiredData, nil, 16))
         if (fuelLevel < 128) {
             return "0 %"
         }
-        let calculation = 0.7812 * Double((fuelLevel - 128))
+        let calculation = 7.812 * Double((fuelLevel - 128))
         return "\(calculation) %"
     }
 }
