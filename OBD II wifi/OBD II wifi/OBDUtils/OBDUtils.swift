@@ -165,6 +165,13 @@ class OBDUtils {
                 resultFormatted = ResultType.UNREADABLE.rawValue
             }
             break
+        case .DISTANCE_TRAVELED_SINCE_CODES_CLEARED_UP:
+            do {
+                resultFormatted = try DistanceSinceCodesClearedUpUtil.formatDistance(result: result)
+            } catch {
+                resultFormatted = ResultType.UNREADABLE.rawValue
+            }
+            break
         default:
             resultFormatted = result
         }

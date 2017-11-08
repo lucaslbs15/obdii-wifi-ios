@@ -69,6 +69,8 @@ class ViewController: UIViewController {
     @IBOutlet weak var engineFuelRateHexLabel: UILabel!
     @IBOutlet weak var hybridBatteryPackRemainingLifeLabel: UILabel!
     @IBOutlet weak var hybridBatteryPackRemainingLifeHexLabel: UILabel!
+    @IBOutlet weak var distanceTraveledSinceCodeClearedUpLabel: UILabel!
+    @IBOutlet weak var distanceTraveledSinceCodeClearedUpHexLabel: UILabel!
     
     var previousLabel: UILabel!
     var defaultFont: UIFont!
@@ -238,6 +240,9 @@ class ViewController: UIViewController {
             sendData(obdCommand: OBDCommandEnum.ENGINE_FUEL_RATE, label: engineFuelRateLabel, labelWithHex: engineFuelRateHexLabel)
             break
         case .ENGINE_FUEL_RATE:
+            sendData(obdCommand: OBDCommandEnum.DISTANCE_TRAVELED_SINCE_CODES_CLEARED_UP, label: distanceTraveledSinceCodeClearedUpLabel, labelWithHex: distanceTraveledSinceCodeClearedUpHexLabel)
+            break
+        case .DISTANCE_TRAVELED_SINCE_CODES_CLEARED_UP:
             prepareToRead(obdCommand: OBDCommandEnum.RESET)
             break
         default:
