@@ -170,6 +170,9 @@ class ViewController: UIViewController {
     private func chooseDataToSend(previousOBDCommand: OBDCommandEnum) {
         switch previousOBDCommand {
         case .IDENTITY:
+            sendData(obdCommand: OBDCommandEnum.DISPLAY_DEVICE_IDENTIFIER, label: voltageLabel)
+            break
+        case .DISPLAY_DEVICE_IDENTIFIER:
             sendData(obdCommand: OBDCommandEnum.READ_INPUT_VOLTAGE, label: voltageLabel, labelWithHex: voltageHexLabel)
             break
         case .READ_INPUT_VOLTAGE:
