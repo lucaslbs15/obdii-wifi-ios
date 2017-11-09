@@ -85,7 +85,7 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="x8G-L9-hLs">
-                                <rect key="frame" x="14" y="196" width="343" height="471"/>
+                                <rect key="frame" x="14" y="269" width="343" height="398"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MgU-25-GAh" userLabel="Dispositivo View">
@@ -851,6 +851,42 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </scrollView>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Identificador" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Pyr-Q2-2lj">
+                                <rect key="frame" x="25" y="187" width="97" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NbQ-2z-n3L">
+                                <rect key="frame" x="130" y="187" width="46" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Gravar"/>
+                                <connections>
+                                    <action selector="storeIdentifierAction" destination="BYZ-38-t0r" eventType="touchUpInside" id="701-gW-ocn"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Atenção! O identificador deve conter 12 caracteres e só pode ser gravado uma única vez" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EhZ-Nl-amm">
+                                <rect key="frame" x="25" y="217" width="332" height="36"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="9"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Identificador:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uYE-kr-0UI">
+                                <rect key="frame" x="25" y="248" width="79" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="acb-4Q-UBw" userLabel="Identificador Label">
+                                <rect key="frame" x="104" y="248" width="244" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -914,6 +950,8 @@
                         <outlet property="hostTextField" destination="y7u-z6-7fb" id="I6J-KU-ZLJ"/>
                         <outlet property="hybridBatteryPackRemainingLifeHexLabel" destination="V2g-6Z-V9y" id="Opa-xj-pvh"/>
                         <outlet property="hybridBatteryPackRemainingLifeLabel" destination="HLd-52-0Zr" id="c2a-UQ-Kmd"/>
+                        <outlet property="identifierLabel" destination="acb-4Q-UBw" id="UYx-dH-CIh"/>
+                        <outlet property="identifierTextField" destination="Pyr-Q2-2lj" id="44I-po-Lzn"/>
                         <outlet property="identityHexLabel" destination="V3V-h8-KyH" id="Ibe-1i-YZV"/>
                         <outlet property="identityLabel" destination="lTR-HJ-iZA" id="z0j-Rf-5w0"/>
                         <outlet property="injectionPressureControlSystemHexLabel" destination="CVa-OH-2Ad" id="xtB-uq-czA"/>
@@ -929,6 +967,7 @@
                         <outlet property="runTimeEngineLabel" destination="2vU-sw-i5d" id="jep-ph-WPO"/>
                         <outlet property="sendDataButton" destination="BSG-Nv-c0o" id="tTD-U0-Vei"/>
                         <outlet property="statusLabel" destination="kNb-Nv-Htt" id="Mw4-zu-M7e"/>
+                        <outlet property="storeIdentifierButton" destination="NbQ-2z-n3L" id="Mc3-ao-TRt"/>
                         <outlet property="textField" destination="3Uw-YV-CWk" id="ud0-N5-zwi"/>
                         <outlet property="timingAdvanceHexLabel" destination="c0T-u8-urH" id="MUe-fQ-DRJ"/>
                         <outlet property="timingAdvanceLabel" destination="tmT-dd-T09" id="6pW-T3-jHe"/>

@@ -71,6 +71,9 @@ class ViewController: UIViewController {
     @IBOutlet weak var hybridBatteryPackRemainingLifeHexLabel: UILabel!
     @IBOutlet weak var distanceTraveledSinceCodeClearedUpLabel: UILabel!
     @IBOutlet weak var distanceTraveledSinceCodeClearedUpHexLabel: UILabel!
+    @IBOutlet weak var identifierLabel: UILabel!
+    @IBOutlet weak var identifierTextField: UITextField!
+    @IBOutlet weak var storeIdentifierButton: UIButton!
     
     var previousLabel: UILabel!
     var defaultFont: UIFont!
@@ -83,6 +86,7 @@ class ViewController: UIViewController {
         defaultFont = identityLabel.font
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.tap(gesture:)))
         self.view.addGestureRecognizer(tapGesture)
+        storeIdentifierButton.isEnabled = true
     }
     
     @IBAction func sendData() {
@@ -125,7 +129,6 @@ class ViewController: UIViewController {
     }
     
     private func sendData(obdCommand: OBDCommandEnum, label: UILabel) {
-        //original was deadline == 4
         obdUtils.startRead(deadline: 1, dataString: obdCommand.rawValue) {
             (result: String) in
             if let commandResult = OBDUtils.replaceOBDCommandResult(result: result, obdCommand: obdCommand) {
@@ -137,7 +140,6 @@ class ViewController: UIViewController {
     }
     
     private func sendData(obdCommand: OBDCommandEnum, label: UILabel, labelWithHex: UILabel) {
-        //original was deadline == 4
         obdUtils.startRead(deadline: 1, dataString: obdCommand.rawValue, label: labelWithHex) {
             (result: String) in
             if let commandResult = OBDUtils.replaceOBDCommandResult(result: result, obdCommand: obdCommand) {
@@ -248,6 +250,22 @@ class ViewController: UIViewController {
         default:
             sendData(obdCommand: OBDCommandEnum.IDENTITY, label: identityLabel, labelWithHex: identityHexLabel)
         }
+    }
+    
+    @IBAction func storeIdentifierAction() {
+        storeDeviceIdentifier()
+    }
+    
+    private func storeDeviceIdentifier() {
+        let defaultIdentifier = "000000000001"
+        let commandToSend = "\(OBDCommandEnum.STORE_DEVICE_IDENTIFIER.rawValue) \(identifierTextField.text ?? defaultIdentifier)"
+        print("commandToSend: \(commandToSend)")
+        
+        /*obdUtils.startRead(deadline: 1, dataString: commandToSend) {
+            (result: String) in
+            print("storeDeviceIdentifier() - result: \(result)")
+            self.chooseDataToSend(previousOBDCommand: OBDCommandEnum.STORE_DEVICE_IDENTIFIER)
+        }*/
     }
 
     override func didReceiveMemoryWarning() {
