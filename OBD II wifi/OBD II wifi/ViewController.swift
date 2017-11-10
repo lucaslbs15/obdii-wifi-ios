@@ -37,6 +37,44 @@ class ViewController: UIViewController {
     @IBOutlet weak var statusHexLabel: UILabel!
     @IBOutlet weak var textField: UITextField!
     
+    @IBOutlet weak var activityMonitorCountLabel: UILabel!
+    @IBOutlet weak var activityMonitorCountHexLabel: UILabel!
+    @IBOutlet weak var intakeAirTempLabel: UILabel!
+    @IBOutlet weak var intakeAirTempHexLabel: UILabel!
+    @IBOutlet weak var intakeManifoldPressureLabel: UILabel!
+    @IBOutlet weak var intakeManifoldPressureHexLabel: UILabel!
+    @IBOutlet weak var timingAdvanceLabel: UILabel!
+    @IBOutlet weak var timingAdvanceHexLabel: UILabel!
+    @IBOutlet weak var fuelPressureDieselLabel: UILabel!
+    @IBOutlet weak var fuelPressureDieselHexLabel: UILabel!
+    @IBOutlet weak var barometricPressureLabel: UILabel!
+    @IBOutlet weak var barometricPressureHexLabel: UILabel!
+    @IBOutlet weak var distanceTraveledWithMalfunctionLabel: UILabel!
+    @IBOutlet weak var distanceTraveledWithMalfunctionHexLabel: UILabel!
+    @IBOutlet weak var fuelRailPressureLabel: UILabel!
+    @IBOutlet weak var fuelRailPressureHexLabel: UILabel!
+    @IBOutlet weak var fuelRailGaugePressureLabel: UILabel!
+    @IBOutlet weak var fuelRailGaugePressureHexLabel: UILabel!
+    @IBOutlet weak var fuelTypeLabel: UILabel!
+    @IBOutlet weak var fuelTypeHexLabel: UILabel!
+    @IBOutlet weak var fuelPressureControlSystemLabel: UILabel!
+    @IBOutlet weak var fuelPressureControlSystemHexLabel: UILabel!
+    @IBOutlet weak var injectionPressureControlSystemLabel: UILabel!
+    @IBOutlet weak var injectionPressureControlSystemHexLabel: UILabel!
+    @IBOutlet weak var engineOilTemperaturaLabel: UILabel!
+    @IBOutlet weak var engineOilTemperaturaHexLabel: UILabel!
+    @IBOutlet weak var fuelInjectionTimingLabel: UILabel!
+    @IBOutlet weak var fuelInjectionTimingHexLabel: UILabel!
+    @IBOutlet weak var engineFuelRateLabel: UILabel!
+    @IBOutlet weak var engineFuelRateHexLabel: UILabel!
+    @IBOutlet weak var hybridBatteryPackRemainingLifeLabel: UILabel!
+    @IBOutlet weak var hybridBatteryPackRemainingLifeHexLabel: UILabel!
+    @IBOutlet weak var distanceTraveledSinceCodeClearedUpLabel: UILabel!
+    @IBOutlet weak var distanceTraveledSinceCodeClearedUpHexLabel: UILabel!
+    @IBOutlet weak var identifierLabel: UILabel!
+    @IBOutlet weak var identifierTextField: UITextField!
+    @IBOutlet weak var storeIdentifierButton: UIButton!
+    
     var previousLabel: UILabel!
     var defaultFont: UIFont!
     
@@ -48,10 +86,12 @@ class ViewController: UIViewController {
         defaultFont = identityLabel.font
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.tap(gesture:)))
         self.view.addGestureRecognizer(tapGesture)
+        storeIdentifierButton.isEnabled = true
     }
     
     @IBAction func sendData() {
         sendDataButton.isEnabled = false
+        storeIdentifierButton.isEnabled = false
         statusLabel.text = "Conectando..."
         configOBDConnection()
         prepareToRead(obdCommand: OBDCommandEnum.RESET)
@@ -66,7 +106,7 @@ class ViewController: UIViewController {
     private func prepareToRead(obdCommand: OBDCommandEnum) {
         obdUtils.prepareToRead(obdCommand: obdCommand) {
             (result: Bool) in
-            print("commad prepared: \(obdCommand.rawValue)")
+            print("command prepared: \(obdCommand.rawValue)")
             self.choosePrepareToRead(previousOBDCommand: obdCommand)
         }
     }
@@ -84,13 +124,43 @@ class ViewController: UIViewController {
         }
     }
     
+    private func prepareToStoreIdentifier(obdCommand: OBDCommandEnum) {
+        obdUtils.prepareToRead(obdCommand: obdCommand) {
+            (result: Bool) in
+            print("command prepared (store identifier): \(obdCommand.rawValue)")
+            self.choosePrepareToStoreIdentifier(previousOBDCommand: obdCommand)
+        }
+    }
+    
+    private func choosePrepareToStoreIdentifier(previousOBDCommand: OBDCommandEnum) {
+        switch previousOBDCommand {
+        case .RESET:
+            prepareToStoreIdentifier(obdCommand: OBDCommandEnum.PROTOCOL_0)
+            break
+        case .PROTOCOL_0:
+            prepareToStoreIdentifier(obdCommand: OBDCommandEnum.PROVE_WORKING)
+            break
+        default:
+            let defaultIdentifier = "000000000001"
+            let commandToSend = "\(OBDCommandEnum.STORE_DEVICE_IDENTIFIER.rawValue) \(identifierTextField.text ?? defaultIdentifier)"
+            print("commandToSend: \(commandToSend)")
+            obdUtils.startRead(deadline: 1, dataString: commandToSend, completion: {
+                (result: String) in
+                if OBDUtils.replaceOBDCommandResult(result: result, obdCommand: OBDCommandEnum.STORE_DEVICE_IDENTIFIER) != nil {
+                    self.sendData(obdCommand: OBDCommandEnum.DISPLAY_DEVICE_IDENTIFIER, label: self.identifierLabel)
+                } else {
+                    self.showErrorAlert()
+                }
+            })
+        }
+    }
+    
     private func readInfos() {
         statusLabel.text = "Buscando dados..."
         chooseDataToSend(previousOBDCommand: OBDCommandEnum.NONE)
     }
     
     private func sendData(obdCommand: OBDCommandEnum, label: UILabel) {
-        //original was deadline == 4
         obdUtils.startRead(deadline: 1, dataString: obdCommand.rawValue) {
             (result: String) in
             if let commandResult = OBDUtils.replaceOBDCommandResult(result: result, obdCommand: obdCommand) {
@@ -102,7 +172,6 @@ class ViewController: UIViewController {
     }
     
     private func sendData(obdCommand: OBDCommandEnum, label: UILabel, labelWithHex: UILabel) {
-        //original was deadline == 4
         obdUtils.startRead(deadline: 1, dataString: obdCommand.rawValue, label: labelWithHex) {
             (result: String) in
             if let commandResult = OBDUtils.replaceOBDCommandResult(result: result, obdCommand: obdCommand) {
@@ -133,6 +202,9 @@ class ViewController: UIViewController {
     private func chooseDataToSend(previousOBDCommand: OBDCommandEnum) {
         switch previousOBDCommand {
         case .IDENTITY:
+            sendData(obdCommand: OBDCommandEnum.DISPLAY_DEVICE_IDENTIFIER, label: identifierLabel)
+            break
+        case .DISPLAY_DEVICE_IDENTIFIER:
             sendData(obdCommand: OBDCommandEnum.READ_INPUT_VOLTAGE, label: voltageLabel, labelWithHex: voltageHexLabel)
             break
         case .READ_INPUT_VOLTAGE:
@@ -160,11 +232,67 @@ class ViewController: UIViewController {
             sendData(obdCommand: OBDCommandEnum.MAF_AIR_FLOW_RATE, label: mafAirFlowRateLabel, labelWithHex: mafAirFlowRateHexLabel)
             break
         case .MAF_AIR_FLOW_RATE:
+            sendData(obdCommand: OBDCommandEnum.DISPLAY_ACTIVITY_MONITOR_COUNT, label: activityMonitorCountLabel, labelWithHex: activityMonitorCountHexLabel)
+            break
+        case .DISPLAY_ACTIVITY_MONITOR_COUNT:
+            sendData(obdCommand: OBDCommandEnum.INTAKE_AIR_TEMPERATURE, label: intakeAirTempLabel, labelWithHex: intakeAirTempHexLabel)
+            break
+        case .INTAKE_AIR_TEMPERATURE:
+            sendData(obdCommand: OBDCommandEnum.INTAKE_MANIFOLD_PRESSURE, label: intakeManifoldPressureLabel, labelWithHex: intakeManifoldPressureHexLabel)
+            break
+        case .INTAKE_MANIFOLD_PRESSURE:
+            sendData(obdCommand: OBDCommandEnum.TIMING_ADVANCE, label: timingAdvanceLabel, labelWithHex: timingAdvanceHexLabel)
+            break
+        case .TIMING_ADVANCE:
+            sendData(obdCommand: OBDCommandEnum.BAROMETRIC_PRESSURE, label: barometricPressureLabel, labelWithHex: barometricPressureHexLabel)
+            break
+        case .BAROMETRIC_PRESSURE:
+            sendData(obdCommand: OBDCommandEnum.DISTANCE_TRAVELED_WITH_MALFUNCTION, label: distanceTraveledWithMalfunctionLabel, labelWithHex: distanceTraveledWithMalfunctionHexLabel)
+            break
+        case .DISTANCE_TRAVELED_WITH_MALFUNCTION:
+            sendData(obdCommand: OBDCommandEnum.FUEL_RAIL_PRESSURE, label: fuelRailPressureLabel, labelWithHex: fuelRailPressureHexLabel)
+            break
+        case .FUEL_RAIL_PRESSURE:
+            sendData(obdCommand: OBDCommandEnum.FUEL_RAIL_GAUGE_PRESSURE, label: fuelRailGaugePressureLabel, labelWithHex: fuelRailGaugePressureHexLabel)
+            break
+        case .FUEL_RAIL_GAUGE_PRESSURE:
+            sendData(obdCommand: OBDCommandEnum.FUEL_TYPE, label: fuelTypeLabel, labelWithHex: fuelTypeHexLabel)
+            break
+        case .FUEL_TYPE:
+            sendData(obdCommand: OBDCommandEnum.FUEL_PRESSURE_CONTROL_SYSTEM, label: fuelPressureControlSystemLabel, labelWithHex: fuelPressureControlSystemHexLabel)
+            break
+        case .FUEL_PRESSURE_CONTROL_SYSTEM:
+            sendData(obdCommand: OBDCommandEnum.INJECTION_PRESSURE_CONTROL_SYSTEM, label: injectionPressureControlSystemLabel, labelWithHex: injectionPressureControlSystemHexLabel)
+            break
+        case .INJECTION_PRESSURE_CONTROL_SYSTEM:
+            sendData(obdCommand: OBDCommandEnum.ENGINE_OIL_TEMPERATURE, label: engineOilTemperaturaLabel, labelWithHex: engineOilTemperaturaHexLabel)
+            break
+        case .ENGINE_OIL_TEMPERATURE:
+            sendData(obdCommand: OBDCommandEnum.FUEL_INJECTION_TIMING, label: fuelInjectionTimingLabel, labelWithHex: fuelInjectionTimingHexLabel)
+            break
+        case .FUEL_INJECTION_TIMING:
+            sendData(obdCommand: OBDCommandEnum.HYBRID_BATTERY_PACK_REMAINING_LIFE, label: hybridBatteryPackRemainingLifeLabel, labelWithHex: hybridBatteryPackRemainingLifeHexLabel)
+            break
+        case .HYBRID_BATTERY_PACK_REMAINING_LIFE:
+            sendData(obdCommand: OBDCommandEnum.ENGINE_FUEL_RATE, label: engineFuelRateLabel, labelWithHex: engineFuelRateHexLabel)
+            break
+        case .ENGINE_FUEL_RATE:
+            sendData(obdCommand: OBDCommandEnum.DISTANCE_TRAVELED_SINCE_CODES_CLEARED_UP, label: distanceTraveledSinceCodeClearedUpLabel, labelWithHex: distanceTraveledSinceCodeClearedUpHexLabel)
+            break
+        case .DISTANCE_TRAVELED_SINCE_CODES_CLEARED_UP:
             prepareToRead(obdCommand: OBDCommandEnum.RESET)
             break
         default:
             sendData(obdCommand: OBDCommandEnum.IDENTITY, label: identityLabel, labelWithHex: identityHexLabel)
         }
+    }
+    
+    @IBAction func storeIdentifierAction() {
+        sendDataButton.isEnabled = false
+        storeIdentifierButton.isEnabled = false
+        statusLabel.text = "Conectando..."
+        configOBDConnection()
+        prepareToStoreIdentifier(obdCommand: OBDCommandEnum.RESET)
     }
 
     override func didReceiveMemoryWarning() {
