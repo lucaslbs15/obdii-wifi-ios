@@ -91,6 +91,7 @@ class ViewController: UIViewController {
     
     @IBAction func sendData() {
         sendDataButton.isEnabled = false
+        storeIdentifierButton.isEnabled = false
         statusLabel.text = "Conectando..."
         configOBDConnection()
         prepareToRead(obdCommand: OBDCommandEnum.RESET)
@@ -105,7 +106,7 @@ class ViewController: UIViewController {
     private func prepareToRead(obdCommand: OBDCommandEnum) {
         obdUtils.prepareToRead(obdCommand: obdCommand) {
             (result: Bool) in
-            print("commad prepared: \(obdCommand.rawValue)")
+            print("command prepared: \(obdCommand.rawValue)")
             self.choosePrepareToRead(previousOBDCommand: obdCommand)
         }
     }
@@ -120,6 +121,37 @@ class ViewController: UIViewController {
             break
         default:
             readInfos()
+        }
+    }
+    
+    private func prepareToStoreIdentifier(obdCommand: OBDCommandEnum) {
+        obdUtils.prepareToRead(obdCommand: obdCommand) {
+            (result: Bool) in
+            print("command prepared (store identifier): \(obdCommand.rawValue)")
+            self.choosePrepareToStoreIdentifier(previousOBDCommand: obdCommand)
+        }
+    }
+    
+    private func choosePrepareToStoreIdentifier(previousOBDCommand: OBDCommandEnum) {
+        switch previousOBDCommand {
+        case .RESET:
+            prepareToStoreIdentifier(obdCommand: OBDCommandEnum.PROTOCOL_0)
+            break
+        case .PROTOCOL_0:
+            prepareToStoreIdentifier(obdCommand: OBDCommandEnum.PROVE_WORKING)
+            break
+        default:
+            let defaultIdentifier = "000000000001"
+            let commandToSend = "\(OBDCommandEnum.STORE_DEVICE_IDENTIFIER.rawValue) \(identifierTextField.text ?? defaultIdentifier)"
+            print("commandToSend: \(commandToSend)")
+            obdUtils.startRead(deadline: 1, dataString: commandToSend, completion: {
+                (result: String) in
+                if OBDUtils.replaceOBDCommandResult(result: result, obdCommand: OBDCommandEnum.STORE_DEVICE_IDENTIFIER) != nil {
+                    self.sendData(obdCommand: OBDCommandEnum.DISPLAY_DEVICE_IDENTIFIER, label: self.identifierLabel)
+                } else {
+                    self.showErrorAlert()
+                }
+            })
         }
     }
     
@@ -170,7 +202,7 @@ class ViewController: UIViewController {
     private func chooseDataToSend(previousOBDCommand: OBDCommandEnum) {
         switch previousOBDCommand {
         case .IDENTITY:
-            sendData(obdCommand: OBDCommandEnum.DISPLAY_DEVICE_IDENTIFIER, label: voltageLabel)
+            sendData(obdCommand: OBDCommandEnum.DISPLAY_DEVICE_IDENTIFIER, label: identifierLabel)
             break
         case .DISPLAY_DEVICE_IDENTIFIER:
             sendData(obdCommand: OBDCommandEnum.READ_INPUT_VOLTAGE, label: voltageLabel, labelWithHex: voltageHexLabel)
@@ -256,19 +288,11 @@ class ViewController: UIViewController {
     }
     
     @IBAction func storeIdentifierAction() {
-        storeDeviceIdentifier()
-    }
-    
-    private func storeDeviceIdentifier() {
-        let defaultIdentifier = "000000000001"
-        let commandToSend = "\(OBDCommandEnum.STORE_DEVICE_IDENTIFIER.rawValue) \(identifierTextField.text ?? defaultIdentifier)"
-        print("commandToSend: \(commandToSend)")
-        
-        /*obdUtils.startRead(deadline: 1, dataString: commandToSend) {
-            (result: String) in
-            print("storeDeviceIdentifier() - result: \(result)")
-            self.chooseDataToSend(previousOBDCommand: OBDCommandEnum.STORE_DEVICE_IDENTIFIER)
-        }*/
+        sendDataButton.isEnabled = false
+        storeIdentifierButton.isEnabled = false
+        statusLabel.text = "Conectando..."
+        configOBDConnection()
+        prepareToStoreIdentifier(obdCommand: OBDCommandEnum.RESET)
     }
 
     override func didReceiveMemoryWarning() {

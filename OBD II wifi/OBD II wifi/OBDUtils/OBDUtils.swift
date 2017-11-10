@@ -84,7 +84,7 @@ class OBDUtils {
     }
     
     func prepareToRead(obdCommand: OBDCommandEnum, completion: @escaping (_ result: Bool) -> Void) {
-        startRead(deadline: 4, dataString: obdCommand.rawValue) {
+        startRead(deadline: 1, dataString: obdCommand.rawValue) {
             (result: String) in
             print("prepareToRead: \(result)")
             completion(true)
@@ -171,6 +171,9 @@ class OBDUtils {
             } catch {
                 resultFormatted = ResultType.UNREADABLE.rawValue
             }
+            break
+        case .DISPLAY_DEVICE_IDENTIFIER:
+            resultFormatted = ResultUtil.rawResult(result: result)
             break
         default:
             resultFormatted = result
