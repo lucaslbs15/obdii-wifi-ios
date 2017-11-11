@@ -173,7 +173,25 @@ class OBDUtils {
             }
             break
         case .DISPLAY_DEVICE_IDENTIFIER:
-            resultFormatted = ResultUtil.rawResult(result: result)
+            do {
+                resultFormatted = try DeviceIdentifierUtil.formatResult(result: result)
+            } catch {
+                resultFormatted = ResultType.UNREADABLE.rawValue
+            }
+            break
+        case .TIMING_ADVANCE:
+            do {
+                resultFormatted = try TimingAdvanceUtil.formatResult(result: result)
+            } catch {
+                resultFormatted = ResultType.UNREADABLE.rawValue
+            }
+            break
+        case .BAROMETRIC_PRESSURE:
+            do {
+                resultFormatted = try BarometricPressureUtil.formatResult(result: result)
+            } catch {
+                resultFormatted = ResultType.UNREADABLE.rawValue
+            }
             break
         default:
             resultFormatted = result
