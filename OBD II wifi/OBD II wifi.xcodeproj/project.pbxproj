@@ -31,6 +31,7 @@
 		FAFCC25E1FB732EC00CF56F6 /* CommandError.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAFCC25D1FB732EC00CF56F6 /* CommandError.swift */; };
 		FAFCC2601FB741E100CF56F6 /* TimingAdvanceUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAFCC25F1FB741E100CF56F6 /* TimingAdvanceUtil.swift */; };
 		FAFCC2621FB7464C00CF56F6 /* BarometricPressureUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAFCC2611FB7464C00CF56F6 /* BarometricPressureUtil.swift */; };
+		FAFCC2641FB7483C00CF56F6 /* DistanceTraveledWithMalfunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAFCC2631FB7483C00CF56F6 /* DistanceTraveledWithMalfunction.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -62,6 +63,7 @@
 		FAFCC25D1FB732EC00CF56F6 /* CommandError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommandError.swift; sourceTree = "<group>"; };
 		FAFCC25F1FB741E100CF56F6 /* TimingAdvanceUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimingAdvanceUtil.swift; sourceTree = "<group>"; };
 		FAFCC2611FB7464C00CF56F6 /* BarometricPressureUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarometricPressureUtil.swift; sourceTree = "<group>"; };
+		FAFCC2631FB7483C00CF56F6 /* DistanceTraveledWithMalfunction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DistanceTraveledWithMalfunction.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -154,6 +156,7 @@
 				FAFCC25D1FB732EC00CF56F6 /* CommandError.swift */,
 				FAFCC25F1FB741E100CF56F6 /* TimingAdvanceUtil.swift */,
 				FAFCC2611FB7464C00CF56F6 /* BarometricPressureUtil.swift */,
+				FAFCC2631FB7483C00CF56F6 /* DistanceTraveledWithMalfunction.swift */,
 			);
 			path = CommandUtil;
 			sourceTree = "<group>";
@@ -292,6 +295,7 @@
 				FABEC2FD1F8FC61600B14A90 /* OBDCommandEnum.swift in Sources */,
 				FACF5B6D1F894FE500A8F438 /* OBDUtils.swift in Sources */,
 				FACFD34F1F894188004F8707 /* ViewController.swift in Sources */,
+				FAFCC2641FB7483C00CF56F6 /* DistanceTraveledWithMalfunction.swift in Sources */,
 				FA2DAA751F929F70001231C9 /* FuelLevelInputUtil.swift in Sources */,
 				FAFCC2621FB7464C00CF56F6 /* BarometricPressureUtil.swift in Sources */,
 				FA2DAA791F92A2CD001231C9 /* RunTimeSinceEngineStartUtil.swift in Sources */,
