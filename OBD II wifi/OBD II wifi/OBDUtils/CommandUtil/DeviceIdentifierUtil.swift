@@ -22,7 +22,7 @@ class DeviceIdentifierUtil {
             return "-"
         }
         
-        let stringArray = result.components(separatedBy: " ")
+        let stringArray = result.components(separatedBy: "\r")
         return stringArray[1]
     }
 }
