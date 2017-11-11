@@ -14,6 +14,9 @@ class TimingAdvanceUtil {
             return "-"
         }
         let stringArray = result.components(separatedBy: " ")
+        if (stringArray.count < 3) {
+            throw CommandError.indexError
+        }
         let byteA = stringArray[2]
         
         let byteADecimal = UInt(strtoul(byteA, nil, 16))

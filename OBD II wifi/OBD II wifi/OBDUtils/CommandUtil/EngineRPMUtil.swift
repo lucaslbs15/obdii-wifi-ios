@@ -17,6 +17,9 @@ class EngineRPMUtil {
         let divideFor: UInt = 4
         let base: UInt = 256
         let stringArray = result.components(separatedBy: " ")
+        if (stringArray.count < 4) {
+            throw CommandError.indexError
+        }
         let firstByte = stringArray[2]
         let secondByte = stringArray[3]
         

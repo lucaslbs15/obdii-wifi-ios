@@ -14,6 +14,9 @@ class MAFAirFlowRateUtil {
             return "-"
         }
         let stringArray = result.components(separatedBy: " ")
+        if (stringArray.count < 4) {
+            throw CommandError.indexError
+        }
         let byteADecimal = UInt(strtoul(stringArray[2], nil, 16))
         let byteBDecimal = UInt(strtoul(stringArray[3], nil, 16))
         let rateCalculated = ((256 * byteADecimal) + byteBDecimal) / 100

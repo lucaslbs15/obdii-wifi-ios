@@ -14,6 +14,9 @@ class FuelTypeUtil {
             return "-"
         }
         let stringArray = result.components(separatedBy: " ")
+        if (stringArray.count < 3) {
+            throw CommandError.indexError
+        }
         let valueType = UInt(stringArray[2], radix: 16)
         let fuelString = try valueFuelType(value: valueType!)
         return fuelString

@@ -10,4 +10,5 @@ import Foundation
 enum CommandError: Error {
     case wrongIdentifierSize(message: String)
     case unableToConnect
+    case indexError
 }

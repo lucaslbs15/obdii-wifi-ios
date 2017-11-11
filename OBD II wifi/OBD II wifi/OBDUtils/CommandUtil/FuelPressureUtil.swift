@@ -14,6 +14,9 @@ class FuelPressureUtil {
             return "-"
         }
         let stringArray = result.components(separatedBy: " ")
+        if (stringArray.count < 3) {
+            throw CommandError.indexError
+        }
         let desiredData = stringArray[2]
         let fuelPressure = UInt8(desiredData, radix: 16)
         let fuelPressureCalculated: UInt = UInt(fuelPressure! * 3)

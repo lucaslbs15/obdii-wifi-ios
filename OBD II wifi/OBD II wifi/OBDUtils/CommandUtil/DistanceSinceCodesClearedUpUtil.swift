@@ -13,6 +13,9 @@ class DistanceSinceCodesClearedUpUtil {
             return "-"
         }
         let stringArray = result.components(separatedBy: " ")
+        if (stringArray.count < 4) {
+            throw CommandError.indexError
+        }
         let firstByte = UInt(strtoul(stringArray[2], nil, 16))
         let secondByte = UInt(strtoul(stringArray[3], nil, 16))
         let calculation = (firstByte * 256) + secondByte

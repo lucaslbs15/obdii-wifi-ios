@@ -15,6 +15,9 @@ class HybridBatteryPackRemaingLifeUtil {
         }
         
         let stringArray = result.components(separatedBy: " ")
+        if (stringArray.count < 3) {
+            throw CommandError.indexError
+        }
         let firstByte = stringArray[2]
         
         guard let firstDecimal = UInt(firstByte, radix: 16), firstByte.count > 0 else {

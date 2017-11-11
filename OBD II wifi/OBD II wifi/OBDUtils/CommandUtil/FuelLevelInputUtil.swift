@@ -15,6 +15,9 @@ class FuelLevelInputUtil {
             return "-"
         }
         let stringArray = result.components(separatedBy: " ")
+        if (stringArray.count < 3) {
+            throw CommandError.indexError
+        }
         let desiredData = stringArray[2]
         print("desiredData - \(desiredData)")
         let fuelLevel = UInt(strtoul(desiredData, nil, 16))

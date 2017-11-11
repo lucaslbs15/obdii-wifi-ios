@@ -10,12 +10,14 @@ import Foundation
 class FuelInjectionTimingUtil {
     
     class func formatResult(result: String) throws -> String {
-        // formula: (((256 * A) + B) / 128) - 210
         if (ResultUtil.hasNoData(result: result) || ResultUtil.isUnableToConnect(result: result)) {
             return "-"
         }
         
         let stringArray = result.components(separatedBy: " ")
+        if (stringArray.count < 4) {
+            throw CommandError.indexError
+        }
         let firstByte = stringArray[2]
         let secondByte = stringArray[3]
         

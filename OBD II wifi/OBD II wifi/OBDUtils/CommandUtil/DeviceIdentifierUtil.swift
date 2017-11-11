@@ -23,6 +23,9 @@ class DeviceIdentifierUtil {
         }
         
         let stringArray = result.components(separatedBy: "\r")
+        if (stringArray.count < 2) {
+            throw CommandError.indexError
+        }
         return stringArray[1]
     }
 }

@@ -15,6 +15,9 @@ class EngineOilTemperatureUtil {
         }
         let subractNeeded: UInt8 = 40
         let stringArray: [String]! = result.components(separatedBy: " ")
+        if (stringArray.count < 3) {
+            throw CommandError.indexError
+        }
         let desiredData = stringArray[2]
         if let value = UInt8(desiredData, radix: 16) {
             return "\(String(value - subractNeeded)) ºC"

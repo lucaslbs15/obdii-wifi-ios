@@ -14,6 +14,9 @@ class EngineFuelRateUtil {
             return "-"
         }
         let stringArray = result.components(separatedBy: " ")
+        if (stringArray.count < 4) {
+            throw CommandError.indexError
+        }
         let firstByte = stringArray[2]
         let secondByte = stringArray[3]
         
