@@ -193,6 +193,69 @@ class OBDUtils {
                 resultFormatted = ResultType.UNREADABLE.rawValue
             }
             break
+        case .DISTANCE_TRAVELED_WITH_MALFUNCTION:
+            do {
+                resultFormatted = try DistanceTraveledWithMalfunctionUtil.formatResult(result: result)
+            } catch {
+                resultFormatted = ResultType.UNREADABLE.rawValue
+            }
+            break
+        case .ENGINE_FUEL_RATE:
+            do {
+                resultFormatted = try EngineFuelRateUtil.formatResult(result: result)
+            } catch {
+                resultFormatted = ResultType.UNREADABLE.rawValue
+            }
+            break
+        case .HYBRID_BATTERY_PACK_REMAINING_LIFE:
+            do {
+                resultFormatted = try HybridBatteryPackRemaingLifeUtil.formatResult(result: result)
+            } catch {
+                resultFormatted = ResultType.UNREADABLE.rawValue
+            }
+            break
+        case .FUEL_INJECTION_TIMING:
+            do {
+                resultFormatted = try FuelInjectionTimingUtil.formatResult(result: result)
+            } catch {
+                resultFormatted = ResultType.UNREADABLE.rawValue
+            }
+            break
+        case .ENGINE_OIL_TEMPERATURE:
+            do {
+                resultFormatted = try EngineOilTemperatureUtil.formatResult(result: result)
+            } catch {
+                resultFormatted = ResultType.UNREADABLE.rawValue
+            }
+            break
+        case .FUEL_TYPE:
+            do {
+                resultFormatted = try FuelTypeUtil.formatResult(result: result)
+            } catch {
+                resultFormatted = ResultType.UNREADABLE.rawValue
+            }
+            break
+        case .FUEL_RAIL_GAUGE_PRESSURE:
+            do {
+                resultFormatted = try FuelRailGaugePressureUtil.formatResult(result: result)
+            } catch {
+                resultFormatted = ResultType.UNREADABLE.rawValue
+            }
+            break
+        case .FUEL_RAIL_PRESSURE:
+            do {
+                resultFormatted = try FuelRailPressureUtil.formatResult(result: result)
+            } catch {
+                resultFormatted = ResultType.UNREADABLE.rawValue
+            }
+            break
+        case .INTAKE_MANIFOLD_PRESSURE:
+            do {
+                resultFormatted = try IntakeManifoldPressureUtil.formatResult(result: result)
+            } catch {
+                resultFormatted = ResultType.UNREADABLE.rawValue
+            }
+            break
         default:
             resultFormatted = result
         }

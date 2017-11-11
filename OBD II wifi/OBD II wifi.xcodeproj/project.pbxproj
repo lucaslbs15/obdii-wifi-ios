@@ -31,7 +31,16 @@
 		FAFCC25E1FB732EC00CF56F6 /* CommandError.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAFCC25D1FB732EC00CF56F6 /* CommandError.swift */; };
 		FAFCC2601FB741E100CF56F6 /* TimingAdvanceUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAFCC25F1FB741E100CF56F6 /* TimingAdvanceUtil.swift */; };
 		FAFCC2621FB7464C00CF56F6 /* BarometricPressureUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAFCC2611FB7464C00CF56F6 /* BarometricPressureUtil.swift */; };
-		FAFCC2641FB7483C00CF56F6 /* DistanceTraveledWithMalfunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAFCC2631FB7483C00CF56F6 /* DistanceTraveledWithMalfunction.swift */; };
+		FAFCC2641FB7483C00CF56F6 /* DistanceTraveledWithMalfunctionUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAFCC2631FB7483C00CF56F6 /* DistanceTraveledWithMalfunctionUtil.swift */; };
+		FAFCC2661FB755BA00CF56F6 /* EngineFuelRateUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAFCC2651FB755BA00CF56F6 /* EngineFuelRateUtil.swift */; };
+		FAFCC2681FB7594D00CF56F6 /* HybridBatteryPackRemaingLifeUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAFCC2671FB7594D00CF56F6 /* HybridBatteryPackRemaingLifeUtil.swift */; };
+		FAFCC26A1FB75BD100CF56F6 /* FuelInjectionTimingUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAFCC2691FB75BD100CF56F6 /* FuelInjectionTimingUtil.swift */; };
+		FAFCC26C1FB7628700CF56F6 /* EngineOilTemperatureUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAFCC26B1FB7628700CF56F6 /* EngineOilTemperatureUtil.swift */; };
+		FAFCC26E1FB7643E00CF56F6 /* FuelTypeUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAFCC26D1FB7643E00CF56F6 /* FuelTypeUtil.swift */; };
+		FAFCC2701FB7667C00CF56F6 /* FuelTypeEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAFCC26F1FB7667B00CF56F6 /* FuelTypeEnum.swift */; };
+		FAFCC2721FB771E000CF56F6 /* FuelRailGaugePressureUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAFCC2711FB771E000CF56F6 /* FuelRailGaugePressureUtil.swift */; };
+		FAFCC2741FB7748500CF56F6 /* FuelRailPressureUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAFCC2731FB7748500CF56F6 /* FuelRailPressureUtil.swift */; };
+		FAFCC2761FB775D300CF56F6 /* IntakeManifoldPressureUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAFCC2751FB775D300CF56F6 /* IntakeManifoldPressureUtil.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -63,7 +72,16 @@
 		FAFCC25D1FB732EC00CF56F6 /* CommandError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommandError.swift; sourceTree = "<group>"; };
 		FAFCC25F1FB741E100CF56F6 /* TimingAdvanceUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimingAdvanceUtil.swift; sourceTree = "<group>"; };
 		FAFCC2611FB7464C00CF56F6 /* BarometricPressureUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarometricPressureUtil.swift; sourceTree = "<group>"; };
-		FAFCC2631FB7483C00CF56F6 /* DistanceTraveledWithMalfunction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DistanceTraveledWithMalfunction.swift; sourceTree = "<group>"; };
+		FAFCC2631FB7483C00CF56F6 /* DistanceTraveledWithMalfunctionUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DistanceTraveledWithMalfunctionUtil.swift; sourceTree = "<group>"; };
+		FAFCC2651FB755BA00CF56F6 /* EngineFuelRateUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EngineFuelRateUtil.swift; sourceTree = "<group>"; };
+		FAFCC2671FB7594D00CF56F6 /* HybridBatteryPackRemaingLifeUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HybridBatteryPackRemaingLifeUtil.swift; sourceTree = "<group>"; };
+		FAFCC2691FB75BD100CF56F6 /* FuelInjectionTimingUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FuelInjectionTimingUtil.swift; sourceTree = "<group>"; };
+		FAFCC26B1FB7628700CF56F6 /* EngineOilTemperatureUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EngineOilTemperatureUtil.swift; sourceTree = "<group>"; };
+		FAFCC26D1FB7643E00CF56F6 /* FuelTypeUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FuelTypeUtil.swift; sourceTree = "<group>"; };
+		FAFCC26F1FB7667B00CF56F6 /* FuelTypeEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FuelTypeEnum.swift; sourceTree = "<group>"; };
+		FAFCC2711FB771E000CF56F6 /* FuelRailGaugePressureUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FuelRailGaugePressureUtil.swift; sourceTree = "<group>"; };
+		FAFCC2731FB7748500CF56F6 /* FuelRailPressureUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FuelRailPressureUtil.swift; sourceTree = "<group>"; };
+		FAFCC2751FB775D300CF56F6 /* IntakeManifoldPressureUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntakeManifoldPressureUtil.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -156,7 +174,16 @@
 				FAFCC25D1FB732EC00CF56F6 /* CommandError.swift */,
 				FAFCC25F1FB741E100CF56F6 /* TimingAdvanceUtil.swift */,
 				FAFCC2611FB7464C00CF56F6 /* BarometricPressureUtil.swift */,
-				FAFCC2631FB7483C00CF56F6 /* DistanceTraveledWithMalfunction.swift */,
+				FAFCC2631FB7483C00CF56F6 /* DistanceTraveledWithMalfunctionUtil.swift */,
+				FAFCC2651FB755BA00CF56F6 /* EngineFuelRateUtil.swift */,
+				FAFCC2671FB7594D00CF56F6 /* HybridBatteryPackRemaingLifeUtil.swift */,
+				FAFCC2691FB75BD100CF56F6 /* FuelInjectionTimingUtil.swift */,
+				FAFCC26B1FB7628700CF56F6 /* EngineOilTemperatureUtil.swift */,
+				FAFCC26D1FB7643E00CF56F6 /* FuelTypeUtil.swift */,
+				FAFCC26F1FB7667B00CF56F6 /* FuelTypeEnum.swift */,
+				FAFCC2711FB771E000CF56F6 /* FuelRailGaugePressureUtil.swift */,
+				FAFCC2731FB7748500CF56F6 /* FuelRailPressureUtil.swift */,
+				FAFCC2751FB775D300CF56F6 /* IntakeManifoldPressureUtil.swift */,
 			);
 			path = CommandUtil;
 			sourceTree = "<group>";
@@ -294,20 +321,29 @@
 				FA2DAA7B1F92A340001231C9 /* MAFAirFlowRateUtil.swift in Sources */,
 				FABEC2FD1F8FC61600B14A90 /* OBDCommandEnum.swift in Sources */,
 				FACF5B6D1F894FE500A8F438 /* OBDUtils.swift in Sources */,
+				FAFCC2761FB775D300CF56F6 /* IntakeManifoldPressureUtil.swift in Sources */,
 				FACFD34F1F894188004F8707 /* ViewController.swift in Sources */,
-				FAFCC2641FB7483C00CF56F6 /* DistanceTraveledWithMalfunction.swift in Sources */,
+				FAFCC26A1FB75BD100CF56F6 /* FuelInjectionTimingUtil.swift in Sources */,
+				FAFCC2641FB7483C00CF56F6 /* DistanceTraveledWithMalfunctionUtil.swift in Sources */,
 				FA2DAA751F929F70001231C9 /* FuelLevelInputUtil.swift in Sources */,
+				FAFCC2661FB755BA00CF56F6 /* EngineFuelRateUtil.swift in Sources */,
 				FAFCC2621FB7464C00CF56F6 /* BarometricPressureUtil.swift in Sources */,
+				FAFCC2721FB771E000CF56F6 /* FuelRailGaugePressureUtil.swift in Sources */,
 				FA2DAA791F92A2CD001231C9 /* RunTimeSinceEngineStartUtil.swift in Sources */,
+				FAFCC2701FB7667C00CF56F6 /* FuelTypeEnum.swift in Sources */,
 				FADE8E9E1F92677E00C0619D /* AmbientAirTemperatureUtil.swift in Sources */,
 				FAFCC25E1FB732EC00CF56F6 /* CommandError.swift in Sources */,
 				FACFD34D1F894188004F8707 /* AppDelegate.swift in Sources */,
 				FAFCC2601FB741E100CF56F6 /* TimingAdvanceUtil.swift in Sources */,
+				FAFCC2681FB7594D00CF56F6 /* HybridBatteryPackRemaingLifeUtil.swift in Sources */,
 				FADE8EA01F92688000C0619D /* IntakeAirTemperatureUtil.swift in Sources */,
 				FAD4C9C61FAF6FBA007A4C97 /* ResultType.swift in Sources */,
+				FAFCC26C1FB7628700CF56F6 /* EngineOilTemperatureUtil.swift in Sources */,
+				FAFCC26E1FB7643E00CF56F6 /* FuelTypeUtil.swift in Sources */,
 				FADE8EA21F9270E100C0619D /* VehicleSpeedUtil.swift in Sources */,
 				FADE8E9A1F905DCD00C0619D /* EngineCoolantTemperatureUtil.swift in Sources */,
 				FADE8EA41F927FBC00C0619D /* ResultUtil.swift in Sources */,
+				FAFCC2741FB7748500CF56F6 /* FuelRailPressureUtil.swift in Sources */,
 				FAFCC25C1FB7304100CF56F6 /* DeviceIdentifierUtil.swift in Sources */,
 				FADB73551FB28B240023F7E7 /* DistanceSinceCodesClearedUpUtil.swift in Sources */,
 				FADE8E9C1F906B0400C0619D /* EngineRPMUtil.swift in Sources */,
