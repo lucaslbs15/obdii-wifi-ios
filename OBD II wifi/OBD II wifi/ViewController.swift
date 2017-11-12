@@ -141,17 +141,26 @@ class ViewController: UIViewController {
             prepareToStoreIdentifier(obdCommand: OBDCommandEnum.PROVE_WORKING)
             break
         default:
-            let defaultIdentifier = "000000000001"
-            let commandToSend = "\(OBDCommandEnum.STORE_DEVICE_IDENTIFIER.rawValue) \(identifierTextField.text ?? defaultIdentifier)"
+            sendStoreDeviceIdentifierCommand()
+        }
+    }
+    
+    private func sendStoreDeviceIdentifierCommand() {
+        do {
+            let commandToSend = try DeviceIdentifierUtil.formatCommand(identifier: identifierTextField.text ?? "")
             print("commandToSend: \(commandToSend)")
             obdUtils.startRead(deadline: 1, dataString: commandToSend, completion: {
                 (result: String) in
                 if OBDUtils.replaceOBDCommandResult(result: result, obdCommand: OBDCommandEnum.STORE_DEVICE_IDENTIFIER) != nil {
                     self.sendData(obdCommand: OBDCommandEnum.DISPLAY_DEVICE_IDENTIFIER, label: self.identifierLabel)
                 } else {
-                    self.showErrorAlert()
+                    self.showErrorAlert(message: "Não foi possível conectar no dispositivo OBD II. Verifique se o seu iOS está conectado via wifi com o OBD II do carro. Feche e abra novamente o aplicativo.")
                 }
             })
+        } catch CommandError.wrongIdentifierSize(let message) {
+            self.showErrorAlert(message: message)
+        } catch {
+            self.showErrorAlert(message: "Algum erro ocorreu")
         }
     }
     
@@ -166,7 +175,7 @@ class ViewController: UIViewController {
             if let commandResult = OBDUtils.replaceOBDCommandResult(result: result, obdCommand: obdCommand) {
                 self.setLabel(label: label, commandResult: commandResult, obdCommand: obdCommand)
             } else {
-                self.showErrorAlert()
+                self.showErrorAlert(message: "Não foi possível conectar no dispositivo OBD II. Verifique se o seu iOS está conectado via wifi com o OBD II do carro. Feche e abra novamente o aplicativo.")
             }
         }
     }
@@ -177,7 +186,7 @@ class ViewController: UIViewController {
             if let commandResult = OBDUtils.replaceOBDCommandResult(result: result, obdCommand: obdCommand) {
                 self.setLabel(label: label, commandResult: commandResult, obdCommand: obdCommand)
             } else {
-                self.showErrorAlert()
+                self.showErrorAlert(message: "Não foi possível conectar no dispositivo OBD II. Verifique se o seu iOS está conectado via wifi com o OBD II do carro. Feche e abra novamente o aplicativo.")
             }
         }
     }
@@ -192,8 +201,9 @@ class ViewController: UIViewController {
         self.chooseDataToSend(previousOBDCommand: obdCommand)
     }
     
-    private func showErrorAlert() {
-        let alert = UIAlertController(title: "Atenção", message: "Não foi possível conectar no dispositivo OBD II. Verifique se o seu iOS está conectado via wifi com o OBD II do carro. Feche e abra novamente o aplicativo.", preferredStyle: UIAlertControllerStyle.alert)
+    private func showErrorAlert(message: String) {
+        //"Não foi possível conectar no dispositivo OBD II. Verifique se o seu iOS está conectado via wifi com o OBD II do carro. Feche e abra novamente o aplicativo."
+        let alert = UIAlertController(title: "Atenção", message: message, preferredStyle: UIAlertControllerStyle.alert)
         let action = UIAlertAction(title: "Ok", style: .default, handler: nil)
         alert.addAction(action)
         self.present(alert, animated: true, completion: nil)

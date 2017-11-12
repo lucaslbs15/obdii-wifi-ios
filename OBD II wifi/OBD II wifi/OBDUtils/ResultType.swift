@@ -11,4 +11,5 @@ enum ResultType: String  {
     case NO_DATA = "NO DATA"
     case UNABLE_TO_CONNECT = "UNABLE TO CONNECT"
     case UNREADABLE = "VALOR ILEGÍVEL"
+    case INDEX_ERROR = "Erro no índice do resultado"
 }

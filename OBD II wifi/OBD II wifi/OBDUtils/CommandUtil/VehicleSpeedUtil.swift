@@ -15,6 +15,9 @@ class VehicleSpeedUtil {
             return "-"
         }
         let stringArray = result.components(separatedBy: " ")
+        if (stringArray.count < 3) {
+            throw CommandError.indexError
+        }
         let desiredData = stringArray[2]
         let speedInKmPerHour = UInt8(desiredData, radix: 16)
         return "\(speedInKmPerHour!) km/h"

@@ -105,6 +105,8 @@ class OBDUtils {
         case .ENGINE_COOLANT_TEMPERATURE:
             do {
                 resultFormatted = try EngineCoolantTemperatureUtil.calculeTemperature(result: result)
+            } catch CommandError.indexError {
+                resultFormatted = ResultType.INDEX_ERROR.rawValue
             } catch {
                 resultFormatted = ResultType.UNREADABLE.rawValue
             }
@@ -112,6 +114,8 @@ class OBDUtils {
         case .ENGINE_RPM:
             do {
                 resultFormatted = try EngineRPMUtil.calculateRPM(result: result)
+            } catch CommandError.indexError {
+                resultFormatted = ResultType.INDEX_ERROR.rawValue
             } catch {
                 resultFormatted = ResultType.UNREADABLE.rawValue
             }
@@ -119,6 +123,8 @@ class OBDUtils {
         case .INTAKE_AIR_TEMPERATURE:
             do {
                 resultFormatted = try IntakeAirTemperatureUtil.calculeTemperature(result: result)
+            } catch CommandError.indexError {
+                resultFormatted = ResultType.INDEX_ERROR.rawValue
             } catch {
                 resultFormatted = ResultType.UNREADABLE.rawValue
             }
@@ -126,6 +132,8 @@ class OBDUtils {
         case .VEHICLE_SPEED:
             do {
                 resultFormatted = try VehicleSpeedUtil.formatSpeed(result: result)
+            } catch CommandError.indexError {
+                resultFormatted = ResultType.INDEX_ERROR.rawValue
             } catch {
                 resultFormatted = ResultType.UNREADABLE.rawValue
             }
@@ -133,13 +141,18 @@ class OBDUtils {
         case .FUEL_LEVEL_INPUT:
             do {
                 resultFormatted = try FuelLevelInputUtil.formatLevel(result: result)
-            } catch {
+            } catch CommandError.indexError {
+                resultFormatted = ResultType.INDEX_ERROR.rawValue
+            }
+            catch {
                 resultFormatted = ResultType.UNREADABLE.rawValue
             }
             break
         case .FUEL_PRESSURE:
             do {
                 resultFormatted = try FuelPressureUtil.formatPressure(result: result)
+            } catch CommandError.indexError {
+                resultFormatted = ResultType.INDEX_ERROR.rawValue
             } catch {
                 resultFormatted = ResultType.UNREADABLE.rawValue
             }
@@ -147,6 +160,8 @@ class OBDUtils {
         case .RUN_TIME_SINCE_ENGINE_START:
             do {
                 resultFormatted = try RunTimeSinceEngineStartUtil.formatRunTime(result: result)
+            } catch CommandError.indexError {
+                resultFormatted = ResultType.INDEX_ERROR.rawValue
             } catch {
                 resultFormatted = ResultType.UNREADABLE.rawValue
             }
@@ -154,6 +169,8 @@ class OBDUtils {
         case .AMBIENT_AIR_TEMPERATURE:
             do {
                 resultFormatted = try AmbientAirTemperatureUtil.calculeTemperature(result: result)
+            } catch CommandError.indexError {
+                resultFormatted = ResultType.INDEX_ERROR.rawValue
             } catch {
                 resultFormatted = ResultType.UNREADABLE.rawValue
             }
@@ -161,6 +178,8 @@ class OBDUtils {
         case .MAF_AIR_FLOW_RATE:
             do {
                 resultFormatted = try MAFAirFlowRateUtil.formatMAF(result: result)
+            } catch CommandError.indexError {
+                resultFormatted = ResultType.INDEX_ERROR.rawValue
             } catch {
                 resultFormatted = ResultType.UNREADABLE.rawValue
             }
@@ -168,12 +187,119 @@ class OBDUtils {
         case .DISTANCE_TRAVELED_SINCE_CODES_CLEARED_UP:
             do {
                 resultFormatted = try DistanceSinceCodesClearedUpUtil.formatDistance(result: result)
+            } catch CommandError.indexError {
+                resultFormatted = ResultType.INDEX_ERROR.rawValue
             } catch {
                 resultFormatted = ResultType.UNREADABLE.rawValue
             }
             break
         case .DISPLAY_DEVICE_IDENTIFIER:
-            resultFormatted = ResultUtil.rawResult(result: result)
+            do {
+                resultFormatted = try DeviceIdentifierUtil.formatResult(result: result)
+            } catch CommandError.indexError {
+                resultFormatted = ResultType.INDEX_ERROR.rawValue
+            } catch {
+                resultFormatted = ResultType.UNREADABLE.rawValue
+            }
+            break
+        case .TIMING_ADVANCE:
+            do {
+                resultFormatted = try TimingAdvanceUtil.formatResult(result: result)
+            } catch CommandError.indexError {
+                resultFormatted = ResultType.INDEX_ERROR.rawValue
+            } catch {
+                resultFormatted = ResultType.UNREADABLE.rawValue
+            }
+            break
+        case .BAROMETRIC_PRESSURE:
+            do {
+                resultFormatted = try BarometricPressureUtil.formatResult(result: result)
+            } catch CommandError.indexError {
+                resultFormatted = ResultType.INDEX_ERROR.rawValue
+            } catch {
+                resultFormatted = ResultType.UNREADABLE.rawValue
+            }
+            break
+        case .DISTANCE_TRAVELED_WITH_MALFUNCTION:
+            do {
+                resultFormatted = try DistanceTraveledWithMalfunctionUtil.formatResult(result: result)
+            } catch CommandError.indexError {
+                resultFormatted = ResultType.INDEX_ERROR.rawValue
+            } catch {
+                resultFormatted = ResultType.UNREADABLE.rawValue
+            }
+            break
+        case .ENGINE_FUEL_RATE:
+            do {
+                resultFormatted = try EngineFuelRateUtil.formatResult(result: result)
+            } catch CommandError.indexError {
+                resultFormatted = ResultType.INDEX_ERROR.rawValue
+            } catch {
+                resultFormatted = ResultType.UNREADABLE.rawValue
+            }
+            break
+        case .HYBRID_BATTERY_PACK_REMAINING_LIFE:
+            do {
+                resultFormatted = try HybridBatteryPackRemaingLifeUtil.formatResult(result: result)
+            } catch CommandError.indexError {
+                resultFormatted = ResultType.INDEX_ERROR.rawValue
+            } catch {
+                resultFormatted = ResultType.UNREADABLE.rawValue
+            }
+            break
+        case .FUEL_INJECTION_TIMING:
+            do {
+                resultFormatted = try FuelInjectionTimingUtil.formatResult(result: result)
+            } catch CommandError.indexError {
+                resultFormatted = ResultType.INDEX_ERROR.rawValue
+            } catch {
+                resultFormatted = ResultType.UNREADABLE.rawValue
+            }
+            break
+        case .ENGINE_OIL_TEMPERATURE:
+            do {
+                resultFormatted = try EngineOilTemperatureUtil.formatResult(result: result)
+            } catch CommandError.indexError {
+                resultFormatted = ResultType.INDEX_ERROR.rawValue
+            } catch {
+                resultFormatted = ResultType.UNREADABLE.rawValue
+            }
+            break
+        case .FUEL_TYPE:
+            do {
+                resultFormatted = try FuelTypeUtil.formatResult(result: result)
+            } catch CommandError.indexError {
+                resultFormatted = ResultType.INDEX_ERROR.rawValue
+            } catch {
+                resultFormatted = ResultType.UNREADABLE.rawValue
+            }
+            break
+        case .FUEL_RAIL_GAUGE_PRESSURE:
+            do {
+                resultFormatted = try FuelRailGaugePressureUtil.formatResult(result: result)
+            } catch CommandError.indexError {
+                resultFormatted = ResultType.INDEX_ERROR.rawValue
+            } catch {
+                resultFormatted = ResultType.UNREADABLE.rawValue
+            }
+            break
+        case .FUEL_RAIL_PRESSURE:
+            do {
+                resultFormatted = try FuelRailPressureUtil.formatResult(result: result)
+            } catch CommandError.indexError {
+                resultFormatted = ResultType.INDEX_ERROR.rawValue
+            } catch {
+                resultFormatted = ResultType.UNREADABLE.rawValue
+            }
+            break
+        case .INTAKE_MANIFOLD_PRESSURE:
+            do {
+                resultFormatted = try IntakeManifoldPressureUtil.formatResult(result: result)
+            } catch CommandError.indexError {
+                resultFormatted = ResultType.INDEX_ERROR.rawValue
+            } catch {
+                resultFormatted = ResultType.UNREADABLE.rawValue
+            }
             break
         default:
             resultFormatted = result

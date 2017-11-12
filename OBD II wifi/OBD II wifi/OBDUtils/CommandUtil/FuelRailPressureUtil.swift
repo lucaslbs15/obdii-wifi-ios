@@ -1,22 +1,22 @@
 //
-//  EngineRPMUtil.swift
+//  FuelRailPressureUtil.swift
 //  OBD II wifi
 //
-//  Created by Lucas Bicca on 13/10/17.
+//  Created by Lucas Bicca on 11/11/17.
 //  Copyright © 2017 MacBook Pro. All rights reserved.
 //
 
 import Foundation
-class EngineRPMUtil {
+class FuelRailPressureUtil {
     
-    class func calculateRPM(result: String) throws -> String {
-        print("EngineRPMUtil calculateRPM: \(result)")
+    class func formatResult(result: String) throws -> String {
         if (ResultUtil.hasNoData(result: result) || ResultUtil.isUnableToConnect(result: result)) {
             return "-"
         }
-        let divideFor: UInt = 4
-        let base: UInt = 256
         let stringArray = result.components(separatedBy: " ")
+        if (stringArray.count < 4) {
+            throw CommandError.indexError
+        }
         let firstByte = stringArray[2]
         let secondByte = stringArray[3]
         
@@ -27,8 +27,7 @@ class EngineRPMUtil {
         guard let secondDecimal = UInt(secondByte, radix: 16), secondByte.count > 0 else {
             return "-"
         }
-        
-        let rpmValue = ((firstDecimal * base) + secondDecimal) / divideFor
-        return String(rpmValue)
+        let calculation = 0.079 * Double(((256 * firstDecimal) + secondDecimal))
+        return "\(calculation) kPa"
     }
 }
