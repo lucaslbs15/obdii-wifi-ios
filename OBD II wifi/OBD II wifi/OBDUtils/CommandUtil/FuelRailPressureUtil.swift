@@ -7,9 +7,9 @@
 //
 
 import Foundation
-class FuelRailPressureUtil {
+open class FuelRailPressureUtil {
     
-    class func formatResult(result: String) throws -> String {
+    open class func formatResult(result: String) throws -> String {
         if (ResultUtil.hasNoData(result: result) || ResultUtil.isUnableToConnect(result: result)) {
             return "-"
         }

@@ -1,18 +1,31 @@
-//  Created by Alex Nikishin on 28/03/2017.
-//  Copyright © 2017 Wisors. All rights reserved.
+//    Copyright (c) 2015-2017 Nikishin Alexander https://twitter.com/wisdors
+//
+//    Permission is hereby granted, free of charge, to any person obtaining a copy of
+//    this software and associated documentation files (the "Software"), to deal in
+//    the Software without restriction, including without limitation the rights to
+//    use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
+//    the Software, and to permit persons to whom the Software is furnished to do so,
+//    subject to the following conditions:
+//
+//    The above copyright notice and this permission notice shall be included in all
+//    copies or substantial portions of the Software.
+//
+//    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+//    IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
+//    FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
+//    COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
+//    IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+//    CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 import Foundation
 
-class OBDStreamDelegate: NSObject, StreamDelegate {
+final class OBDStreamDelegate: NSObject, StreamDelegate {
+    typealias OBDStreamDelegateEventBlock = (Stream, Stream.Event) -> Void
     
-    let streamEventHandler: (Stream, Stream.Event) -> Void
-    
-    init(streamEventHandler: @escaping (Stream, Stream.Event) -> Void) {
-        self.streamEventHandler = streamEventHandler
-    }
+    var onStreamEvent: OBDStreamDelegateEventBlock?
     
     // MARK: - StreamDelegate -
     @objc open func stream(_ aStream: Stream, handle eventCode: Stream.Event) {
-        streamEventHandler(aStream, eventCode)
+        onStreamEvent?(aStream, eventCode)
     }
 }

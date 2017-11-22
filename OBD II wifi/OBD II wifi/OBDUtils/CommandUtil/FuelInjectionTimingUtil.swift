@@ -7,9 +7,9 @@
 //
 
 import Foundation
-class FuelInjectionTimingUtil {
+open class FuelInjectionTimingUtil {
     
-    class func formatResult(result: String) throws -> String {
+    open class func formatResult(result: String) throws -> String {
         if (ResultUtil.hasNoData(result: result) || ResultUtil.isUnableToConnect(result: result)) {
             return "-"
         }

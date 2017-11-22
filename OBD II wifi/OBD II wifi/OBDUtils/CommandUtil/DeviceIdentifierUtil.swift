@@ -7,9 +7,9 @@
 //
 
 import Foundation
-class DeviceIdentifierUtil {
+open class DeviceIdentifierUtil {
     
-    class func formatCommand(identifier: String) throws -> String {
+    open class func formatCommand(identifier: String) throws -> String {
         if (identifier.characters.count != 12) {
             throw CommandError.wrongIdentifierSize(message: "\(identifier) must to be with 12 characters")
         }
@@ -17,7 +17,7 @@ class DeviceIdentifierUtil {
         return "\(OBDCommandEnum.STORE_DEVICE_IDENTIFIER.rawValue) \(identifier)"
     }
     
-    class func formatResult(result: String) throws -> String {
+    open class func formatResult(result: String) throws -> String {
         if (ResultUtil.hasNoData(result: result) || ResultUtil.isUnableToConnect(result: result)) {
             return "-"
         }

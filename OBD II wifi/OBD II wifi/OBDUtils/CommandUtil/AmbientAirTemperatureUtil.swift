@@ -7,9 +7,9 @@
 //
 
 import Foundation
-class AmbientAirTemperatureUtil {
+open class AmbientAirTemperatureUtil {
     
-    class func calculeTemperature(result: String) throws -> String {
+    open class func calculeTemperature(result: String) throws -> String {
         print("AmbientAirTemperatureUtil calculeTemperature: \(result)")
         if (ResultUtil.hasNoData(result: result) || ResultUtil.isUnableToConnect(result: result)) {
             return "-"

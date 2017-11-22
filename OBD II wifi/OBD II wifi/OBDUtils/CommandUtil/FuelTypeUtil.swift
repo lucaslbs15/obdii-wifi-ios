@@ -7,9 +7,9 @@
 //
 
 import Foundation
-class FuelTypeUtil {
+open class FuelTypeUtil {
     
-    class func formatResult(result: String) throws -> String {
+    open class func formatResult(result: String) throws -> String {
         if (ResultUtil.hasNoData(result: result) || ResultUtil.isUnableToConnect(result: result)) {
             return "-"
         }
@@ -22,7 +22,7 @@ class FuelTypeUtil {
         return fuelString
     }
     
-    class private func valueFuelType(value: UInt) throws -> String {
+    private class func valueFuelType(value: UInt) throws -> String {
         let type:String
         switch value {
         case 0:
