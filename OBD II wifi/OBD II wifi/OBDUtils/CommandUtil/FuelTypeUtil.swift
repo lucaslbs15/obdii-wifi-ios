@@ -22,7 +22,7 @@ open class FuelTypeUtil {
         return fuelString
     }
     
-    private class private func valueFuelType(value: UInt) throws -> String {
+    private class func valueFuelType(value: UInt) throws -> String {
         let type:String
         switch value {
         case 0:
