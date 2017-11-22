@@ -7,9 +7,9 @@
 //
 
 import Foundation
-class MAFAirFlowRateUtil {
+open class MAFAirFlowRateUtil {
     
-    class func formatMAF(result: String) throws -> String {
+    open class func formatMAF(result: String) throws -> String {
         if (ResultUtil.hasNoData(result: result) || ResultUtil.isUnableToConnect(result: result)) {
             return "-"
         }

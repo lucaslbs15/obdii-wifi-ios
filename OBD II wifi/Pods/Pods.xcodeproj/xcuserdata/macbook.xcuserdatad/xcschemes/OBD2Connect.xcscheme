@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '4E86123B6D525869F49D240A9ADAC103'
+               BlueprintIdentifier = '6EA7FE940F54C3895E055B0D802845DC'
                BlueprintName = 'OBD2Connect'
                ReferencedContainer = 'container:Pods.xcodeproj'
                BuildableName = 'OBD2Connect.framework'>

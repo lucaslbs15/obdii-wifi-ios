@@ -7,8 +7,9 @@
 //
 
 import Foundation
-class DistanceSinceCodesClearedUpUtil {
-    class func formatDistance(result: String) throws -> String {
+open class DistanceSinceCodesClearedUpUtil {
+    
+    open class func formatDistance(result: String) throws -> String {
         if (ResultUtil.hasNoData(result: result) || ResultUtil.isUnableToConnect(result: result)) {
             return "-"
         }

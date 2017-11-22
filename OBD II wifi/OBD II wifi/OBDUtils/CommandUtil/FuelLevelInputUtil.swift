@@ -7,9 +7,9 @@
 //
 
 import Foundation
-class FuelLevelInputUtil {
+open class FuelLevelInputUtil {
     
-    class func formatLevel(result: String) throws -> String {
+    open class func formatLevel(result: String) throws -> String {
         print("Fuel level output: \(result)")
         if (ResultUtil.hasNoData(result: result) || ResultUtil.isUnableToConnect(result: result)) {
             return "-"

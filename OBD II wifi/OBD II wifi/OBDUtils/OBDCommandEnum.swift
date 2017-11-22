@@ -7,7 +7,7 @@
 //
 
 import Foundation
-enum OBDCommandEnum: String {
+public enum OBDCommandEnum: String {
     case NONE = "NONE"
     case RESET = "ATZ"
     case IDENTITY = "ATI"

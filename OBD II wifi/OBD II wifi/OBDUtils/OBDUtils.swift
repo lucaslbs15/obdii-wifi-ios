@@ -8,29 +8,30 @@
 
 import Foundation
 import OBD2Connect
-class OBDUtils {
+open class OBDUtils {
     
     var connection: OBDConnection
     
-    init(host: String, port: UInt32, completionQueue: DispatchQueue = DispatchQueue.main, timeout: TimeInterval = 0.100) {
-        connection = OBDConnection(host: host, port: port, completionQueue: completionQueue, requestTimeout: timeout)
+    public init(host: String, port: UInt32, completionQueue: DispatchQueue = DispatchQueue.main, timeout: TimeInterval = 0.100) {
+        let configuration: OBDConnectionConfiguration = OBDConnectionConfiguration(host: host, port: port, requestTimeout: timeout)
+        connection = OBDConnection(configuration: configuration, completionQueue: completionQueue)
     }
     
-    func printLogWhenStateChange() {
+    open func printLogWhenStateChange() {
         connection.onStateChanged = { state in
             print(state)
         }
     }
     
-    func openConnection() {
+    open func openConnection() {
         connection.open()
     }
     
-    func closeConnection() {
+    open func closeConnection() {
         connection.close()
     }
     
-    func startRead(deadline: Int, dataString: String) {
+    open func startRead(deadline: Int, dataString: String) {
         let commandString: String = "\(dataString)\r"
         let dataToSend: Data = commandString.data(using: .ascii)!
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(deadline), qos: .default, flags: .assignCurrentContext, execute: {
@@ -46,7 +47,7 @@ class OBDUtils {
             })
     }
     
-    func startRead(deadline: Int, dataString: String, completion: @escaping (_ result: String) -> Void) {
+    open func startRead(deadline: Int, dataString: String, completion: @escaping (_ result: String) -> Void) {
         let commandString: String = "\(dataString)\r"
         let dataToSend: Data = commandString.data(using: .ascii)!
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(deadline), qos: .default, flags: .assignCurrentContext, execute: {
@@ -64,7 +65,7 @@ class OBDUtils {
         })
     }
     
-    func startRead(deadline: Int, dataString: String, label: UILabel!, completion: @escaping (_ result: String) -> Void) {
+    open func startRead(deadline: Int, dataString: String, label: UILabel!, completion: @escaping (_ result: String) -> Void) {
         let commandString: String = "\(dataString)\r"
         let dataToSend: Data = commandString.data(using: .ascii)!
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(deadline), qos: .default, flags: .assignCurrentContext, execute: {
@@ -83,7 +84,7 @@ class OBDUtils {
         })
     }
     
-    func prepareToRead(obdCommand: OBDCommandEnum, completion: @escaping (_ result: Bool) -> Void) {
+    open func prepareToRead(obdCommand: OBDCommandEnum, completion: @escaping (_ result: Bool) -> Void) {
         startRead(deadline: 1, dataString: obdCommand.rawValue) {
             (result: String) in
             print("prepareToRead: \(result)")
@@ -91,7 +92,7 @@ class OBDUtils {
         }
     }
     
-    class func replaceOBDCommandResult(result: String, obdCommand: OBDCommandEnum) -> String! {
+    open class func replaceOBDCommandResult(result: String, obdCommand: OBDCommandEnum) -> String! {
         var resultFormatted: String!
         switch obdCommand {
         case .IDENTITY, .PROTOCOL_0, .DISPLAY_ACTIVITY_MONITOR_COUNT,
@@ -307,7 +308,7 @@ class OBDUtils {
         return resultFormatted
     }
     
-    class func replaceATCommand(result: String, obdCommand: OBDCommandEnum) throws -> String! {
+    private class func replaceATCommand(result: String, obdCommand: OBDCommandEnum) throws -> String! {
         if (!ResultUtil.isReturnATCommand(result: result, obdCommand: obdCommand)) {
             return nil
         }
@@ -315,7 +316,7 @@ class OBDUtils {
         return resultArray[1]
     }
     
-    class func replace41Command(result: String, obdCommand: OBDCommandEnum) throws -> String! {
+    private class func replace41Command(result: String, obdCommand: OBDCommandEnum) throws -> String! {
         if (!ResultUtil.isReturn41Command(result: result, obdCommand: obdCommand)) {
             return nil
         }

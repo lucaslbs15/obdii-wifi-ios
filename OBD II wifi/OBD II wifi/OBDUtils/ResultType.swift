@@ -7,7 +7,7 @@
 //
 
 import Foundation
-enum ResultType: String  {
+public enum ResultType: String  {
     case NO_DATA = "NO DATA"
     case UNABLE_TO_CONNECT = "UNABLE TO CONNECT"
     case UNREADABLE = "VALOR ILEGÍVEL"

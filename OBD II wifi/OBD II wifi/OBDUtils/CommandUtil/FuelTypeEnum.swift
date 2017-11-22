@@ -7,7 +7,7 @@
 //
 
 import Foundation
-enum FuelTypeEnum: String {
+public enum FuelTypeEnum: String {
     case NOT_AVAILABLE = "Not available"
     case GASOLINE = "Gasoline"
     case METHANOL = "Methanol"

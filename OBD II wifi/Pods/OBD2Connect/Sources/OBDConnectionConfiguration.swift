@@ -19,6 +19,20 @@
 
 import Foundation
 
-// OBD typedefs
-public typealias OBDResultCallback = (OBDResult<String>) -> Void
-public typealias OBDConnectionStateCallback = (OBDConnectionState) -> Void
+public struct OBDConnectionConfiguration {
+    
+    // MARK: - Connection properties -
+    public let host: String
+    public let port: UInt32
+    public var requestTimeout: TimeInterval
+    
+    public static func defaultELMAdapterConfiguration() -> OBDConnectionConfiguration {
+        return OBDConnectionConfiguration(host: "192.168.0.10", port: 35000, requestTimeout: 1)
+    }
+    
+    public init(host: String, port: UInt32, requestTimeout: TimeInterval) {
+        self.host = host
+        self.port = port
+        self.requestTimeout = requestTimeout
+    }
+}

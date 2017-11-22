@@ -7,7 +7,7 @@
 //
 
 import Foundation
-enum CommandError: Error {
+public enum CommandError: Error {
     case wrongIdentifierSize(message: String)
     case unableToConnect
     case indexError
