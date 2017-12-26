@@ -106,7 +106,7 @@ class ViewController: UIViewController {
     private func prepareToRead(obdCommand: OBDCommandEnum) {
         obdUtils.prepareToRead(obdCommand: obdCommand) {
             (result: Bool) in
-            print("command prepared: \(obdCommand.rawValue)")
+            print("prepareToRead: \(obdCommand.rawValue) - result: \(result)")
             self.choosePrepareToRead(previousOBDCommand: obdCommand)
         }
     }

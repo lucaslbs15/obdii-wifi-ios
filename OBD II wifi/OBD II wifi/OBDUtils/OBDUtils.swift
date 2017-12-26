@@ -13,8 +13,9 @@ open class OBDUtils {
     var connection: OBDConnection
     
     public init(host: String, port: UInt32, completionQueue: DispatchQueue = DispatchQueue.main, timeout: TimeInterval = 0.100) {
-        let configuration: OBDConnectionConfiguration = OBDConnectionConfiguration(host: host, port: port, requestTimeout: timeout)
-        connection = OBDConnection(configuration: configuration, completionQueue: completionQueue)
+        /*let configuration: OBDConnectionConfiguration = OBDConnectionConfiguration(host: host, port: port, requestTimeout: timeout)
+        connection = OBDConnection(configuration: configuration, completionQueue: completionQueue)*/
+        connection = OBDConnection(host: host, port: port, completionQueue: completionQueue, requestTimeout: timeout)
     }
     
     open func printLogWhenStateChange() {

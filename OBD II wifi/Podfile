@@ -6,6 +6,6 @@ target 'OBD II wifi' do
   use_frameworks!
 
   # Pods for OBD II wifi
-pod 'OBD2Connect', '~> 2.0.0'
+pod 'OBD2Connect', '~> 1.2.1'
 
 end
